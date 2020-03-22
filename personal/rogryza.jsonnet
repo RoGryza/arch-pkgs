@@ -10,5 +10,5 @@ local neovim = import 'modules/neovim/main.jsonnet';
    pkgdesc: 'Personal config files',
    url: 'https://github.com/RoGryza/arch-pkgs',
    license: ['MIT'],
-   _license: importstr './LICENSE',
+   _license: importstr '../LICENSE',
  })._output)
