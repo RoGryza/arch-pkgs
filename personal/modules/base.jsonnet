@@ -33,7 +33,7 @@ local files = import 'lib/files.libsonnet';
         %wheel ALL=(ALL) ALL
         Defaults passwd_timeout=0
       |||,
-      check: 'visudo --check --file=$FILE',
+      check: 'visudo --check --file=%s' % self.source,
       mode: '0640',
     },
   },

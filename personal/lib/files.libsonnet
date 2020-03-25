@@ -38,11 +38,11 @@ local util = import 'lib/util.libsonnet';
 
     source+:: [f.source for f in fileList],
 
-    _check+:: std.flattenArrays([
-      ['export FILE=' + f.source, f.check]
+    _check+:: [
+      f.check
       for f in fileList
       if f.check != null
-    ]),
+    ],
     _package+:: [
       'install -Dm %(mode)s %(source)s "$pkgdir/%(path)s"' % f
       for f in fileList
@@ -55,6 +55,6 @@ local util = import 'lib/util.libsonnet';
   },
 
   bash:: {
-    check: 'echo "Validating $FILE" && bash -n $FILE',
+    check: 'echo "Validating %(source)s" && bash -n %(source)s' % self,
   },
 }

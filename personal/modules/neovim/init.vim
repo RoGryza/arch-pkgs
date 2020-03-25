@@ -1,3 +1,8 @@
+if exists('g:rogryza_loaded_init')
+  finish
+endif
+let g:rogryza_loaded_init = 1
+
 filetype plugin indent on
 syntax on
 

@@ -6,12 +6,20 @@
     'pyls-mypy',
   ],
 
-  _viminit+:: |||
-    " Python
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'pyls',
-        \ 'cmd': {server_info->['pyls']},
-        \ 'whitelist': ['python'],
-        \ })
-  |||,
+  _nvim+:: {
+    _init+:: {
+      'python.vim': |||
+        " Python
+        augroup PythonLsp
+        au!
+        au User lsp_setup call lsp#register_server({
+            \ 'name': 'pyls',
+            \ 'cmd': {server_info->['pyls']},
+            \ 'whitelist': ['python'],
+            \ })
+        au BufWritePre *.py LspDocumentFormatSync
+        augroup END
+      |||,
+    },
+  },
 }
