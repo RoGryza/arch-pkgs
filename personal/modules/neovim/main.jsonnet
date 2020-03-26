@@ -1,8 +1,8 @@
 local util = import 'lib/util.libsonnet';
 local submodules = [
-  import './completion.jsonnet',
   import './ctrlp.jsonnet',
   import './editing.jsonnet',
+  import './language-support.jsonnet',
   import './lsp.jsonnet',
   import './git.jsonnet',
   import './visual.jsonnet',
@@ -14,10 +14,23 @@ local submodules = [
 std.foldl(function(a, b) a + b, submodules, {
   local manifest = self,
 
+  local plugins = util.mapToArray(
+    function(k, v) {
+      name: k,
+      _version:: self.rev,
+      rev: 'v%s' % self._version,
+      srcdir: '%s-%s' % [std.split(self.github, '/')[1], self._version],
+      _vimCheck: null,
+      _systemDepends: [],
+      _extraPluginDirs: [],
+    } + v,
+    self._nvim._plugins,
+  ),
+
   _depends+:: [
     'neovim',
     'neovim-drop-in',
-  ],
+  ] + std.flattenArrays([p._systemDepends for p in plugins]),
 
   _programs+:: {
     editor: 'nvim',
@@ -41,18 +54,29 @@ std.foldl(function(a, b) a + b, submodules, {
         github: 'tpope/vim-eunuch',
       },
     },
+
+    _plugindirs+:: [
+      'autoload',
+      'colors',
+      'compiler',
+      'doc',
+      'ftdetect',
+      'ftplugin',
+      'import',
+      'indent',
+      'keymap',
+      'lang',
+      'plugin',
+      'print',
+      'rplugin',
+      'spell',
+      'syntax',
+    ] + std.flattenArrays([
+      p._extraPluginDirs
+      for p in plugins
+    ]),
   },
 
-  local plugins = util.mapToArray(
-    function(k, v) {
-      name: k,
-      _version:: self.rev,
-      rev: 'v%s' % self._version,
-      srcdir: '%s-%s' % [std.split(self.github, '/')[1], self._version],
-      _vimCheck: null,
-    } + v,
-    self._nvim._plugins,
-  ),
   local vimChecks = std.prune(util.mapToArray(
     function(k, v) if std.isObject(v) && v._vimCheck != null then { name: k, check: v._vimCheck },
     self._nvim._init,
@@ -83,13 +107,13 @@ std.foldl(function(a, b) a + b, submodules, {
           install -Dm 644 $file $pkgdir/%(rtp)s/start/%(name)s/$file
         done
       fi
-      for dir in autoload colors compiler doc ftdetect ftplugin import indent keymap lang plugin print spell syntax; do
+      for dir in %(plugindirs)s; do
         if [ -d $dir ]; then
           cp -drr --no-preserve=ownership $dir $pkgdir/%(rtp)s/start/%(name)s/
         fi
       done
       popd
-    ||| % (p { rtp: rtp })
+    ||| % (p { plugindirs: std.join(' ', manifest._nvim._plugindirs), rtp: rtp })
     for p in plugins
   ],
 
