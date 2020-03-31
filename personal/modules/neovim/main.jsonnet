@@ -8,6 +8,7 @@ local submodules = [
   import './visual.jsonnet',
 
   import './languages.jsonnet',
+  import './c.jsonnet',
   import './python.jsonnet',
 ];
 
@@ -30,6 +31,7 @@ std.foldl(function(a, b) a + b, submodules, {
   _depends+:: [
     'neovim',
     'neovim-drop-in',
+    'python-pynvim',
   ] + std.flattenArrays([p._systemDepends for p in plugins]),
 
   _programs+:: {

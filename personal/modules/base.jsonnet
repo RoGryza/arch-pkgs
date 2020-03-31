@@ -1,6 +1,8 @@
 local files = import 'lib/files.libsonnet';
 
 {
+  local manifest = self,
+
   _depends+:: [
     'sudo',
     'git',
@@ -21,12 +23,15 @@ local files = import 'lib/files.libsonnet';
     'openssh',
     'gnupg',
   ],
+  _keymap+:: {
+    console: null,
+  },
   _files+:: {
     'etc/locale.conf': files.bash {
       content: 'LANG=en_US.UTF-8',
     },
-    'etc/vconsole.conf': files.bash {
-      content: 'KEYMAP=br-abnt2',
+    [if manifest._keymap.console != null then 'etc/vconsole.conf']: {
+      content: 'KEYMAP=%s' % manifest._keymap.console,
     },
     'etc/sudoers.d/wheel': {
       content: |||

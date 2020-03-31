@@ -30,6 +30,7 @@ local util = import 'lib/util.libsonnet';
           executable: false,
           path: k,
           source: std.strReplace(k, '/', '_'),
+          replace: false,
         } + v,
       self._files,
     ),
@@ -44,9 +45,33 @@ local util = import 'lib/util.libsonnet';
       if f.check != null
     ],
     _package+:: [
-      'install -Dm %(mode)s %(source)s "$pkgdir/%(path)s"' % f
+      'install -Dm %(mode)s %(source)s "$pkgdir/%(path)s%(suffix)s"' % f {
+        suffix: if self.replace then '.rogryza' else '',
+      }
       for f in fileList
     ],
+
+    _installFunctions+:: {
+      _post_install_setup_files: [
+        |||
+          [ -f /%(path)s ] && cp /%(path)s /%(path)s.bak
+          cp /%(path)s.rogryza /%(path)s
+        ||| % f
+        for f in fileList
+        if f.replace
+      ],
+
+      post_install+: ['_post_install_setup_files'],
+      post_upgrade+: ['_post_install_setup_files'],
+      pre_remove+: [
+        |||
+          rm -f /%(path)s
+          [ -f /%(path)s.bak ] && cp /%(path)s.bak /%(path)s
+        ||| % f
+        for f in fileList
+        if f.replace
+      ],
+    },
 
     _output+:: {
       [f.source]: f.content

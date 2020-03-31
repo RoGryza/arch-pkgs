@@ -3,6 +3,8 @@ if exists('g:rogryza_loaded_init')
 endif
 let g:rogryza_loaded_init = 1
 
+let g:python_host_prog = '/usr/bin/python'
+
 filetype plugin indent on
 syntax on
 

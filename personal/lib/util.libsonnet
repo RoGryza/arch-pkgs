@@ -1,4 +1,7 @@
 {
+  mergeAll:: function(objs, start={})
+    std.foldl(function(a, b) a + b, objs, start),
+
   nullOrEmpty:: function(v)
     v == null || std.length(v) == 0,
 

@@ -4,6 +4,7 @@
 
     _programs:: {
       editor: null,
+      terminal: null,
     },
 
     _profile:: {
