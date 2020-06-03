@@ -2,6 +2,8 @@
   manifest:: {
     local manifest = self,
 
+    _depends+:: ['xdg-utils'],
+
     _programs:: {
       editor: null,
       terminal: null,
