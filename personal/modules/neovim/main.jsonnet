@@ -10,6 +10,7 @@ local submodules = [
   import './languages.jsonnet',
   import './c.jsonnet',
   import './python.jsonnet',
+  import './rust.jsonnet',
 ];
 
 std.foldl(function(a, b) a + b, submodules, {
