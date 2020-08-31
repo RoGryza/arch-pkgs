@@ -34,6 +34,7 @@ local files = import 'lib/files.libsonnet';
     'tmux',
     'refind',
     'pinentry',
+    'qt5-base',  // for pinentry-qt
     'dunst',
     'sudo',
     'git',
