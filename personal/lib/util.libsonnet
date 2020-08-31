@@ -7,7 +7,7 @@
 
   mapToArray:: function(fn, obj)
     local mapped = std.mapWithKey(fn, obj);
-    [mapped[k] for k in std.objectFieldsAll(obj)],
+    [mapped[k] for k in std.objectFields(obj)],
 
   objectFromPairs:: function(pairs) { [p[0]]: p[1] for p in pairs },
 
