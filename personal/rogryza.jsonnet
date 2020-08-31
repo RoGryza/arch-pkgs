@@ -6,6 +6,7 @@ local modules = [
   import 'modules/docker.jsonnet',
   import 'modules/x11/main.jsonnet',
   import 'modules/network.jsonnet',
+  import 'modules/pacman.jsonnet',
   import 'modules/vscode/main.jsonnet',
   {
     maintainer: 'Rodrigo Gryzinski <rogryza@gmail.com>',
