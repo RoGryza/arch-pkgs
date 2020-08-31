@@ -5,8 +5,8 @@ local modules = [
   import 'modules/base.jsonnet',
   import 'modules/docker.jsonnet',
   import 'modules/x11/main.jsonnet',
-  import 'modules/neovim/main.jsonnet',
   import 'modules/network.jsonnet',
+  import 'modules/vscode/main.jsonnet',
   {
     maintainer: 'Rodrigo Gryzinski <rogryza@gmail.com>',
     pkgname: 'rogryza',

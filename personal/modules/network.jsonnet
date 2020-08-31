@@ -3,6 +3,12 @@ local services = import 'lib/services.libsonnet';
 {
   local manifest = self,
 
+  _depends+:: [
+    'dhcpcd',
+    'net-tools',
+    'wpa_supplicant',
+  ],
+
   _networkConf:: {
     local conf = self,
     _iface:: error 'No interface for networkConf',

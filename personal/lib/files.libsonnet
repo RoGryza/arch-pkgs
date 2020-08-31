@@ -13,13 +13,14 @@ local util = import 'lib/util.libsonnet';
         'etc/profile.d/%s.sh' % name,
         $.bash {
           content: std.lines(util.mapToArray(
-            function(k, v) 'export %s=%s' % [k, util.formatBash(v)],
+            function(k, v) if (v == null) then '# export %s=' % k else 'export %s=%s' % [k, util.formatBash(v)],
             vars
           )),
         },
       ],
       self._profile,
     ),
+    _directories+:: {},
 
     local fileList = util.mapToArray(
       function(k, v)
@@ -35,6 +36,15 @@ local util = import 'lib/util.libsonnet';
       self._files,
     ),
 
+    local dirList = util.mapToArray(
+      function(k, v)
+        {
+          mode: '0755',
+          path: k,
+        } + v,
+      self._directories,
+    ),
+
     _profile:: {},
 
     source+:: [f.source for f in fileList],
@@ -45,6 +55,9 @@ local util = import 'lib/util.libsonnet';
       if f.check != null
     ],
     _package+:: [
+      'mkdir -p "$pkgdir/%(path)s" && chmod %(mode)s "$pkgdir/%(path)s"' % d
+      for d in dirList
+    ] + [
       'install -Dm %(mode)s %(source)s "$pkgdir/%(path)s%(suffix)s"' % f {
         suffix: if self.replace then '.rogryza' else '',
       }

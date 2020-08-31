@@ -17,14 +17,16 @@ local files = import 'lib/files.libsonnet';
     'fd',
     'lsd',
     'ripgrep',
-    'dhcpcd',
-    'net-tools',
-    'wpa_supplicant',
     'openssh',
     'gnupg',
   ],
   _keymap+:: {
     console: null,
+  },
+  _directories+:: {
+    'etc/sudoers.d': {
+      mode: '0750',
+    },
   },
   _files+:: {
     'etc/locale.conf': files.bash {
