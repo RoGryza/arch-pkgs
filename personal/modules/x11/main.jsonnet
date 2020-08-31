@@ -13,6 +13,8 @@ util.mergeAll(submodules, {
     'adobe-source-code-pro-fonts',
     'xorg-server',
     'xorg-xinit',
+    'xorg-xkill',
+    'nvidia',
   ],
 
   _keymap+:: {
