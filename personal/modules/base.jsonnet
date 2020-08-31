@@ -33,6 +33,7 @@ local files = import 'lib/files.libsonnet';
     'buku',
     'tmux',
     'refind',
+    'pinentry',
     'dunst',
     'sudo',
     'git',
