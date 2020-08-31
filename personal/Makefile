@@ -15,14 +15,20 @@ FD := find . -path ./$(OUT) -prune -o -print -type f -name
 MAIN := $(NAME).jsonnet
 SRC := $(MAIN) $(shell $(FD) '*.jsonnet' -print) $(shell $(FD) '*.libsonnet' -print)
 TARBALL := $(OUT)/$(NAME)-$(VERSION)-$(REL)-x86_64.pkg.tar.xz
+DB := $(OUT)/rogryza.db.tar.gz
 
 .PHONY: clean install
 
 default: $(OUT)/PKGBUILD
-all: $(TARBALL)
+all: $(TARBALL) $(DB)
+tarball: $(TARBALL)
+db: $(DB)
 
 install: $(TARBALL)
 	(cd $(OUT) && makepkg -i)
+
+$(DB): $(TARBALL)
+	repo-add $(DB) $(TARBALL)
 
 $(TARBALL):  $(OUT)/.SRCINFO
 	(cd $(OUT) && makepkg -csf)
