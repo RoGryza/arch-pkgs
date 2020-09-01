@@ -7,6 +7,7 @@ local modules = [
   import 'modules/x11/main.jsonnet',
   import 'modules/network.jsonnet',
   import 'modules/pacman.jsonnet',
+  import 'modules/python.jsonnet',
   import 'modules/vscode/main.jsonnet',
   import 'modules/rust.jsonnet',
   {
