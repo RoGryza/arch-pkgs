@@ -14,7 +14,7 @@ local modules = [
   {
     maintainer: 'Rodrigo Gryzinski <rogryza@gmail.com>',
     pkgname: 'rogryza',
-    pkgver: '0.0.2',
+    pkgver: '0.0.3',
     pkgrel: 1,
     pkgdesc: 'Personal config files',
     url: 'https://github.com/RoGryza/arch-pkgs',
