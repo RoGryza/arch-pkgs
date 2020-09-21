@@ -24,6 +24,7 @@ std.foldl(function(a, b) a + b, submodules, {
       srcdir: '%s-%s' % [std.split(self.github, '/')[1], self._version],
       _vimCheck: null,
       _systemDepends: [],
+      _extraFiles: [],
       _extraPluginDirs: [],
     } + v,
     self._nvim._plugins,
@@ -76,10 +77,7 @@ std.foldl(function(a, b) a + b, submodules, {
       'rplugin',
       'spell',
       'syntax',
-    ] + std.flattenArrays([
-      p._extraPluginDirs
-      for p in plugins
-    ]),
+    ],
   },
 
   local vimChecks = std.prune(util.mapToArray(
@@ -117,8 +115,16 @@ std.foldl(function(a, b) a + b, submodules, {
           cp -drr --no-preserve=ownership $dir $pkgdir/%(rtp)s/start/%(name)s/
         fi
       done
+      %(extraFiles)s
       popd
-    ||| % (p { plugindirs: std.join(' ', manifest._nvim._plugindirs), rtp: rtp })
+    ||| % (p {
+             plugindirs: std.join(' ', manifest._nvim._plugindirs + p._extraPluginDirs),
+             rtp: rtp,
+             extraFiles: std.join('\n', [
+               'install -Dm 644 %(file)s $pkgdir/%(rtp)s/start/%(name)s/%(file)s' % (self { file: f })
+               for f in p._extraFiles
+             ]),
+           })
     for p in plugins
   ],
 

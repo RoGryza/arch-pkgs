@@ -13,6 +13,10 @@
         github: 'pangloss/vim-javascript',
         _version:: '1.2.2',
       },
+      'vim-nix': {
+        github: 'LnL7/vim-nix',
+        rev: 'd733cb96707a2a6bdc6102b6d89f947688e0e959',
+      },
       'vim-svelte': {  // depends on vim-javascript!
         github: 'evanleck/vim-svelte',
         rev: '721d5adb8e05e8da49f0cbdde00c51cf4bcbf4f5',
