@@ -28,4 +28,4 @@ local modules = [
   },
 ];
 
-manifest(util.mergeAll(modules))._output
+manifest(util.mergeAll(modules))
