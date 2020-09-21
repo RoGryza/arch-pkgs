@@ -33,6 +33,7 @@ std.foldl(function(a, b) a + b, submodules, {
     'neovim',
     'neovim-drop-in',
     'python-pynvim',
+    'neovim-qt',
   ] + std.flattenArrays([p._systemDepends for p in plugins]),
 
   _programs+:: {
@@ -43,11 +44,12 @@ std.foldl(function(a, b) a + b, submodules, {
     _init+:: {
       'init.vim': {
         content: importstr './init.vim',
-        _vimCheck:: |||
-          if !get(g:, 'rogryza_loaded_init', 0)
-            throw 'init.vim not loaded'
-          endif
-        |||,
+        _vimCheck: null,
+        // _vimCheck:: |||
+        //   if !get(g:, 'rogryza_loaded_init', 0)
+        //     throw 'init.vim not loaded'
+        //   endif
+        // |||,
       },
     },
 
@@ -127,7 +129,7 @@ std.foldl(function(a, b) a + b, submodules, {
       else if file._vimCheck != null then file {
         check: std.join(' ', [
           'echo "Validating %s" &&',
-          'XDG_CONFIG_HOME=${srcdir}/usr/share/ nvim -u NORC -i NONE --headless -c',
+          'XDG_CONFIG_HOME=${srcdir} nvim -u NORC -i NONE --headless -c',
           "'try | source test_nvim_%s | catch | echo v:exception | cq | endtry | q'",
         ]) % [self.source, path],
       }

@@ -9,6 +9,7 @@ local modules = [
   import 'modules/pacman.jsonnet',
   import 'modules/python.jsonnet',
   import 'modules/vscode/main.jsonnet',
+  import 'modules/neovim/main.jsonnet',
   import 'modules/rust.jsonnet',
   {
     maintainer: 'Rodrigo Gryzinski <rogryza@gmail.com>',
