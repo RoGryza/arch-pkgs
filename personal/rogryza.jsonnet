@@ -3,6 +3,7 @@ local util = import 'lib/util.libsonnet';
 
 local modules = [
   import 'modules/base.jsonnet',
+  import 'modules/direnv/main.jsonnet',
   import 'modules/docker.jsonnet',
   import 'modules/x11/main.jsonnet',
   import 'modules/network.jsonnet',
@@ -14,7 +15,7 @@ local modules = [
   {
     maintainer: 'Rodrigo Gryzinski <rogryza@gmail.com>',
     pkgname: 'rogryza',
-    pkgver: '0.0.3',
+    pkgver: '0.0.4',
     pkgrel: 1,
     pkgdesc: 'Personal config files',
     url: 'https://github.com/RoGryza/arch-pkgs',

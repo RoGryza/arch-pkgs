@@ -1,0 +1,40 @@
+# source: https://github.com/direnv/direnv/wiki/Vim
+add_extra_vimrc() {
+  local extravim="$(find_up .lvimrc)"
+  if [ -n "$extravim" ]; then
+    echo "Adding extra .vimrc: ${extravim}"
+    path_add EXTRA_VIM $extravim
+  fi
+}
+
+layout_poetry() {
+  if [[ ! -f pyproject.toml ]]; then
+    log_error 'No pyproject.toml found. Use `poetry new` or `poetry init` to create one first.'
+    exit 2
+  fi
+
+  local VENV=$(poetry env list --full-path | cut -d' ' -f1)/bin
+  if [[ ! -d "$VENV" ]]; then
+    log_error 'No created poetry virtual environment found. Use `poetry install to create one first.'
+    exit 2
+  fi
+
+  export VIRTUAL_ENV=$(echo "$VENV" | rev | cut -d'/' -f2- | rev)
+  export POETRY_ACTIVE=1
+  PATH_add "$VENV"
+  path_add PYTHONPATH "$(realpath .)"
+  export PYTHONPATH
+}
+
+layout_postgres() {
+  export PGDATA="$(direnv_layout_dir)/postgres"
+  export PGHOST="$PGDATA"
+
+  if [[ ! -d "$PGDATA" ]]; then
+    initdb
+
+    echo "listen_addresses = ''" >> "$PGDATA/postgresql.conf"
+    echo "unix_socket_directories = '$PGHOST'" >> "$PGDATA/postgresql.conf"
+    echo "CREATE DATABASE $USER;" | postgres --single -E postgres
+  fi
+}

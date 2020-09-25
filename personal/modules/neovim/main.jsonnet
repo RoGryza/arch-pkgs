@@ -45,7 +45,6 @@ std.foldl(function(a, b) a + b, submodules, {
     _init+:: {
       'init.vim': {
         content: importstr './init.vim',
-        _vimCheck: null,
         // _vimCheck:: |||
         //   if !get(g:, 'rogryza_loaded_init', 0)
         //     throw 'init.vim not loaded'
@@ -81,7 +80,7 @@ std.foldl(function(a, b) a + b, submodules, {
   },
 
   local vimChecks = std.prune(util.mapToArray(
-    function(k, v) if std.isObject(v) && v._vimCheck != null then { name: k, check: v._vimCheck },
+    function(k, v) if std.isObject(v) && std.objectHasAll(v, '_vimCheck') && v._vimCheck != null then { name: k, check: v._vimCheck },
     self._nvim._init,
   )),
 
@@ -128,19 +127,22 @@ std.foldl(function(a, b) a + b, submodules, {
     for p in plugins
   ],
 
-  _files+:: util.mapPairs(
-    function(path, file) [
-      '%s/start/init/plugin/%s' % [rtp, path],
-      if std.isString(file) then { content: file }
-      else if file._vimCheck != null then file {
-        check: std.join(' ', [
-          'echo "Validating %s" &&',
-          'XDG_CONFIG_HOME=${srcdir} nvim -u NORC -i NONE --headless -c',
-          "'try | source test_nvim_%s | catch | echo v:exception | cq | endtry | q'",
-        ]) % [self.source, path],
-      }
-      else file,
-    ],
-    self._nvim._init,
-  ),
+  local toInitFiles = function(d, files)
+    util.mapPairs(
+      function(path, file) [
+        '%s/%s' % [d, path],
+        if std.isString(file) then { content: file }
+        else if std.objectHasAll(file, '_vimCheck') && file._vimCheck != null then file {
+          check: std.join(' ', [
+            'echo "Validating %s" &&',
+            'XDG_CONFIG_HOME=${srcdir} nvim -u NORC -i NONE --headless -c',
+            "'try | source test_nvim_%s | catch | echo v:exception | cq | endtry | q'",
+          ]) % [self.source, path],
+        }
+        else file,
+      ],
+      files,
+    ),
+
+  _files+:: toInitFiles('%s/start/init/plugin' % rtp, self._nvim._init),
 })
