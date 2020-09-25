@@ -24,6 +24,7 @@ std.foldl(function(a, b) a + b, submodules, {
       srcdir: '%s-%s' % [std.split(self.github, '/')[1], self._version],
       _vimCheck: null,
       _systemDepends: [],
+      _extraDirs: [],
       _extraFiles: [],
       _extraPluginDirs: [],
     } + v,
@@ -103,6 +104,7 @@ std.foldl(function(a, b) a + b, submodules, {
       # Install vim plugin %(name)s
 
       pushd "${srcdir}/%(srcdir)s"
+      %(beforePackage)s
       install -d $pkgdir/%(rtp)s/start/%(name)s
       if test -n "$(find . -maxdepth 1 -name '*.vim' -print -quit)"; then
         for file in *.vim; do
@@ -117,12 +119,13 @@ std.foldl(function(a, b) a + b, submodules, {
       %(extraFiles)s
       popd
     ||| % (p {
-             plugindirs: std.join(' ', manifest._nvim._plugindirs + p._extraPluginDirs),
+             plugindirs: std.join(' ', manifest._nvim._plugindirs + p._extraDirs),
              rtp: rtp,
              extraFiles: std.join('\n', [
                'install -Dm 644 %(file)s $pkgdir/%(rtp)s/start/%(name)s/%(file)s' % (self { file: f })
                for f in p._extraFiles
              ]),
+             beforePackage: if std.objectHasAll(p, '_beforePackage') then p._beforePackage else '',
            })
     for p in plugins
   ],

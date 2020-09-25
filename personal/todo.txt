@@ -1,0 +1,32 @@
+BACKUP GPG KEY!!!!
+do something about home files
+use vim plugins from aur
+manage coc extensions and config
+battery warnings
+picom
+xsetroot
+Monitor dependencies
+config Xresources font from dependencies and set rofi Xresources with rofi configs
+set default browser
+move to BTRFS
+linux-lts + better desktop scheduler
+manage groups? (docker for user)
+graphical boot
+split off local configs (network interface names)
+pkgs: buku, nvidia, dunst, rtv, baobab, pinentry-qt, rofi, direnv, refind, zsh + fasd, firefox, yay, yarn, pass, hub, newsboat, slock, ttf-fire-code, otf-fira-code, pkgfile, tmux
+replace newsboat
+replace buku?
+add cargo-sweep and decide what to do with rustup (https://medium.com/horrible-hacks/using-systemd-as-a-better-cron-a4023eea996d)
+local vimrc
+move to selfhosted repo
+dwm, st
+https://github.com/nix-community/rnix-lsp instead of vim-nix
+add lorri
+manage zshrc
+manage taskrc, remove "ignore hostname"
+
+-wifi
+-fix permissions for suoders.d and others
+Change hub for github-cli
+archlinux-nix
+nohang
