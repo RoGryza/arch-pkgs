@@ -27,8 +27,6 @@ local files = import 'lib/files.libsonnet';
         set smartindent
 
         set formatoptions+=t
-        set splitbelow
-        set splitright
         set wildmenu
         set wildmode=longest,list
         set noshowmode
@@ -60,10 +58,10 @@ local files = import 'lib/files.libsonnet';
         nnoremap j gj
         nnoremap k gk
 
-        nnoremap <Leader>e :bn<CR>
-        nnoremap <Leader>q :bp<CR>
-        nnoremap <Leader>bd :silent! bp<bar>sp<bar>silent! bn<bar>bd<CR>
-        nnoremap <Leader>w :w<CR>
+        nnoremap <Leader>e :Tabnext<CR>
+        nnoremap <Leader>q :Tabprevious<CR>
+        nnoremap <Leader>bd :Tabclose<CR>
+        nnoremap <Leader>w :Write<CR>
 
         nnoremap <Leader><space> :nohlsearch<CR>
 
