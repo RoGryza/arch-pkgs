@@ -3,7 +3,6 @@ local util = import 'lib/util.libsonnet';
 
 local modules = [
   import 'modules/base.jsonnet',
-  import 'modules/direnv/main.jsonnet',
   import 'modules/docker.jsonnet',
   import 'modules/x11/main.jsonnet',
   import 'modules/network.jsonnet',
