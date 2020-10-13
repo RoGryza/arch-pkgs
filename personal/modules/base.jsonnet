@@ -29,12 +29,7 @@ local files = import 'lib/files.libsonnet';
     'sed',
     'texinfo',
     'which',
-    'direnv',
-    'buku',
-    'tmux',
     'refind',
-    'pinentry',
-    'qt5-base',  // for pinentry-qt
     'dunst',
     'sudo',
     'git',

@@ -6,9 +6,11 @@ with
     ./modules/direnv
     ./modules/gpg.nix
     ./modules/ssh.nix
+    ./modules/tmux
     ./modules/zsh
   ];
 
   home.packages = with pkgs; [
+    buku
   ];
 }
