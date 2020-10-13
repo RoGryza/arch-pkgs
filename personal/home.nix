@@ -4,6 +4,7 @@ with
 {
   imports = [
     ./modules/direnv
+    ./modules/dunst.nix
     ./modules/gpg.nix
     ./modules/ssh.nix
     ./modules/tmux

@@ -30,7 +30,6 @@ local files = import 'lib/files.libsonnet';
     'texinfo',
     'which',
     'refind',
-    'dunst',
     'sudo',
     'git',
     'firefox',
