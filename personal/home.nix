@@ -2,9 +2,13 @@
 with
   pkgs.lib;
 {
+  nixpkgs.config.allowUnfree = true;
+
   imports = [
     ./modules/direnv
     ./modules/dunst.nix
+    ./modules/firefox.nix
+    ./modules/pass.nix
     ./modules/gpg.nix
     ./modules/ssh.nix
     ./modules/tmux
@@ -12,6 +16,18 @@ with
   ];
 
   home.packages = with pkgs; [
+    baobab
     buku
+    github-cli
+    jq
+    mplayer
+    mupdf
+    newsboat
+    pavucontrol
+    rtv
+    slock
+    spotify
   ];
+
+  programs.rofi.enable = true;
 }
