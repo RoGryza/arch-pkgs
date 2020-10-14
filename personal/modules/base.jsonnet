@@ -13,6 +13,7 @@ local files = import 'lib/files.libsonnet';
     'fakeroot',
     'file',
     'findutils',
+    'firefox',
     'flex',
     'gawk',
     'gcc',

@@ -7,7 +7,6 @@ with
   imports = [
     ./modules/direnv
     ./modules/dunst.nix
-    ./modules/firefox.nix
     ./modules/pass.nix
     ./modules/gpg.nix
     ./modules/ssh.nix
