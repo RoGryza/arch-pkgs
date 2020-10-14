@@ -25,6 +25,32 @@ in {
     initExtra = ''
     ${pkgs.autocutsel}/bin/autocutsel -fork &
     ${pkgs.autocutsel}/bin/autocutsel -selection PRIMARY -fork &
+    eval `dbus-launch --auto-syntax`
+    systemctl --user import-environment DISPLAY
+
+    if [ -d /etc/X11/xinit/xinitrc.d ] ; then
+      for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
+        [ -x "$f" ] && . "$f"
+      done
+      unset f
+    fi
+
+    while true; do
+      xsetroot -name "BAT $(cat /sys/class/power_supply/BAT0/capacity)% | $(date '+%a %d/%m %R')"
+      sleep 1m
+    done &
+
+    xrdb -merge ~/.Xresources
     '';
   };
+  xresources.extraConfig = builtins.readFile (
+    pkgs.fetchFromGitHub {
+      owner = "dracula";
+      repo = "xresources";
+      rev = "8de11976678054f19a9e0ec49a48ea8f9e881a05";
+      sha256 = "12wmjynk0ryxgwb0hg4kvhhf886yvjzkp96a5bi9j0ryf3pc9kx7";
+    } + "/Xresources"
+  );
+
+  programs.rofi.enable = true;
 }

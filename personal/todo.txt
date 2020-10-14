@@ -26,6 +26,7 @@ manage zshrc
 manage taskrc, remove "ignore hostname"
 add vim-fugitive
 wrap nix-prefetch-url in vim
+check out dwm-status
 
 -wifi
 -fix permissions for suoders.d and others
