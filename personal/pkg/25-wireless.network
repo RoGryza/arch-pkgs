@@ -1,0 +1,10 @@
+[DHCP]
+RouteMetric=20
+
+[Match]
+Name=wlp7s0
+
+[Network]
+DHCP=yes 
+
+

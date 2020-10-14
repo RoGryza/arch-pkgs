@@ -1,0 +1,10 @@
+[DHCP]
+RouteMetric=10
+
+[Match]
+Name=enp8s0
+
+[Network]
+DHCP=yes 
+
+

@@ -1,8 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-VERSION_SCRIPT='local m = import "rogryza.jsonnet"; "%s-%s" % [m.pkgver, m.pkgrel]'
-RELEASE_NAME="$(jsonnet --jpath . --string --exec "$VERSION_SCRIPT")"
+RELEASE_NAME=$(printf "$(cat pkg/PKGBUILD)"'\necho $pkgver-$pkgrel\n' | bash)
 echo "Updating release for $RELEASE_NAME..."
 make --silent db
 
@@ -22,5 +21,5 @@ make --silent db
 # fi
 
 echo "Uploading files..."
-cd out && gh release upload --clobber 0.0.1-1 \
+cd pkg && gh release upload --clobber 0.0.1-1 \
   rogryza.db "rogryza-$RELEASE_NAME-x86_64.pkg.tar.zst"

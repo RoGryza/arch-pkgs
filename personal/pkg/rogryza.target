@@ -1,0 +1,9 @@
+[Install]
+WantedBy=multi-user.target
+
+[Unit]
+Description=Dummy target for enabled services
+Requires=multi-user.target
+Wants=docker.socket systemd-networkd.service systemd-resolved.service wpa_supplicant@wlp7s0.service
+
+
