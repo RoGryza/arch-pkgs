@@ -25,6 +25,7 @@ add lorri
 manage zshrc
 manage taskrc, remove "ignore hostname"
 add vim-fugitive
+wrap nix-prefetch-url in vim
 
 -wifi
 -fix permissions for suoders.d and others

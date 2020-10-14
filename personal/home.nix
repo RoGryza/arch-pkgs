@@ -12,6 +12,7 @@ with
     ./modules/pass.nix
     ./modules/ssh.nix
     ./modules/tmux
+    ./modules/x11
     ./modules/zsh
   ];
 
