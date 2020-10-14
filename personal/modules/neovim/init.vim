@@ -1,10 +1,3 @@
-if exists('g:rogryza_loaded_init')
-  finish
-endif
-let g:rogryza_loaded_init = 1
-
-let g:python_host_prog = '/usr/bin/python'
-
 filetype plugin indent on
 syntax on
 
@@ -36,8 +29,11 @@ set smartcase
 
 " Backup/persistance settings
 set undodir=~/.cache/nvim/undo//
+silent execute '!mkdir -p ~/.cache/nvim/undo'
 set backupdir=~/.cache/nvim/backup//
+silent execute '!mkdir -p ~/.cache/nvim/backup'
 set directory=~/.cache/nvim/swap//
+silent execute '!mkdir -p ~/.cache/nvim/swap'
 set backupskip=/tmp/*
 set backup
 set writebackup
@@ -88,3 +84,17 @@ nnoremap <Leader>w :w<CR>
 nnoremap <Leader><space> :nohlsearch<CR>
 
 nnoremap <space> za
+
+" direnv .lvimrc integration
+function! s:direnv_init() abort
+  if exists("$EXTRA_VIM")
+    for path in split($EXTRA_VIM, ':')
+      exec "source ".path
+    endfor
+  endif
+endfunction
+
+augroup direnv
+  au!
+  autocmd VimEnter * call s:direnv_init()
+augroup END

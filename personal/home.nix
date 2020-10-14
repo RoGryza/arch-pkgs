@@ -7,8 +7,9 @@ with
   imports = [
     ./modules/direnv
     ./modules/dunst.nix
-    ./modules/pass.nix
+    ./modules/neovim
     ./modules/gpg.nix
+    ./modules/pass.nix
     ./modules/ssh.nix
     ./modules/tmux
     ./modules/zsh
