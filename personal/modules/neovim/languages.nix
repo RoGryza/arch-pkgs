@@ -6,5 +6,8 @@
       vim-jsonnet
       vim-nix
     ];
+
+    # TODO manage jdtls installation
+    lsc.serverCommands.java = "jdtls";
   };
 }

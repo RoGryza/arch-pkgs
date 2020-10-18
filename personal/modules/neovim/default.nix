@@ -1,4 +1,5 @@
-{ pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
+with lib;
 let
   my-ale = {
     plugin = pkgs.vimPlugins.ale;
@@ -8,9 +9,30 @@ let
     let g:ale_fix_on_save = 1
     '';
   };
+  my-lsc = {
+      plugin = pkgs.vimPlugins.vim-lsc;
+      config = ''
+      let g:lsc_auto_map = v:true
+      let g:lsc_enable_autocomplete = v:true
+      let g:lsc_enable_diagnostics = v:false
+      let g:lsc_trace_level = 'off'
+      autocmd CompleteDone * silent! pclose
+      let g:lsc_server_commands = {
+        ${strings.concatStringsSep ",\n" (attrsets.mapAttrsToList
+          (k: v: ''
+          \  '${k}': {
+          \    'command': '${v}',
+          \    'log_level': -1,
+          \    'suppress_stderr': v:true,
+          \  }'')
+          config.programs.neovim.lsc.serverCommands
+        )}
+      \}
+      '';
+  };
   my-dracula = {
     plugin = pkgs.vimPlugins.dracula-vim;
-    config = lib.mkAfter ''
+    config = ''
     set background=dark
     augroup dracula
       au!
@@ -37,27 +59,37 @@ let
   };
 in
 {
-  home.packages = [ pkgs.neovim-qt ];
+  options = {
+    programs.neovim.lsc.serverCommands = mkOption {
+      type = types.attrsOf types.string;
+      default = {};
+    };
+  };
 
   imports = [ ./languages.nix ];
 
-  programs.neovim = {
-    enable = true;
-    viAlias = true;
-    vimAlias = true;
-    vimdiffAlias = true;
+  config = {
+    home.packages = [ pkgs.neovim-qt ];
 
-    extraConfig = builtins.readFile ./init.vim;
-    plugins = with pkgs.vimPlugins; [
-      my-ale
-      my-ctrlp
-      my-dracula
-      vim-commentary
-      vim-eunuch
-      vim-fugitive
-      vim-gitgutter
-      vim-repeat
-      vim-surround
-    ];
+    programs.neovim = {
+      enable = true;
+      viAlias = true;
+      vimAlias = true;
+      vimdiffAlias = true;
+
+      extraConfig = builtins.readFile ./init.vim;
+      plugins = with pkgs.vimPlugins; [
+        my-ale
+        my-ctrlp
+        my-dracula
+        my-lsc
+        vim-commentary
+        vim-eunuch
+        vim-fugitive
+        vim-gitgutter
+        vim-repeat
+        vim-surround
+      ];
+    };
   };
 }
