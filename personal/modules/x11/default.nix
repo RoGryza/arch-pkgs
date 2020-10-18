@@ -1,11 +1,13 @@
-{ pkgs, ... }:
+{ config, pkgs, lib, ... }:
+with lib;
 let
   my-st = pkgs.callPackage ../../derivations/st.nix {};
   my-dwm = with pkgs; (callPackage ../../derivations/dwm {
     cmds = {
       run = "${rofi}/bin/rofi -modi drun -show drun";
-      term = "${my-st}/bin/st";
-      tmux = "${mt-st}/bin/st -e ${tmux}/bin/tmux new-session";
+      # TODO figure out why my-st.out doesn't work
+      term = "st";
+      tmux = "st -e ${tmux}/bin/tmux new-session";
       browser = "/usr/bin/firefox";
       lock = "${slock}/bin/slock";
       pass = "${pass}/bin/passmenu";
@@ -17,16 +19,15 @@ in {
     my-st
   ];
 
-  xsession = {
-    enable = true;
-    numlock.enable = true;
-    windowManager.command = "${my-dwm}/bin/dwm";
-
-    initExtra = ''
-    ${pkgs.autocutsel}/bin/autocutsel -fork &
-    ${pkgs.autocutsel}/bin/autocutsel -selection PRIMARY -fork &
+  xsession.enable = true;
+  xsession.windowManager.command = "${my-dwm}/bin/dwm";
+  home.file.".xinitrc" = {
+    executable = true;
+    text = ''
     eval `dbus-launch --auto-syntax`
-    systemctl --user import-environment DISPLAY
+
+    ${optionalString (config.xsession.importedVariables != [])
+      ("systemctl --user import-environment " + toString (unique config.xsession.importedVariables))}
 
     if [ -d /etc/X11/xinit/xinitrc.d ] ; then
       for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
@@ -40,9 +41,21 @@ in {
       sleep 1m
     done &
 
+    ${pkgs.autocutsel}/bin/autocutsel -fork &
+    ${pkgs.autocutsel}/bin/autocutsel -selection PRIMARY -fork &
+
     xrdb -merge ~/.Xresources
+
+    (sleep 5 && xterm)&
+
+    errorlog="$HOME/.xsession-errors"
+    if ( cp /dev/null "$errorlog" 2> /dev/null ); then
+      chmod 600 "$errorlog"
+      exec ${config.xsession.windowManager.command} > "$errorlog" 2>&1
+    fi
     '';
   };
+
   xresources.extraConfig = builtins.readFile (
     pkgs.fetchFromGitHub {
       owner = "dracula";

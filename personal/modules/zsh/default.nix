@@ -58,6 +58,10 @@ with
         ${builtins.readFile ./keyboard.zsh}
         '';
 
+      profileExtra = ''
+      export XDG_DATA_DIRS=/usr/share:/usr/local/share
+      '';
+
       shellAliases = {
         v = "vim";
         ipython = "ipython --no-banner --no-confirm-exit";
