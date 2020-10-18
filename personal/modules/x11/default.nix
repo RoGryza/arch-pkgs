@@ -21,6 +21,7 @@ in {
 
   xsession.enable = true;
   xsession.windowManager.command = "${my-dwm}/bin/dwm";
+  xsession.importedVariables = [ "LOCALE_ARCHIVE" ];
   home.file.".xinitrc" = {
     executable = true;
     text = ''

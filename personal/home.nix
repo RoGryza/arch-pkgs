@@ -1,8 +1,10 @@
-{ pkgs ? import ./nix/nixpkgs.nix, ... }:
-with
-  pkgs.lib;
+let
+  pkgs = import ./nix/nixpkgs.nix {};
+in
+  with pkgs.lib;
 {
   nixpkgs.config.allowUnfree = true;
+  xdg.configFile."nixpkgs/config.nix".text = "{ allowUnfree = true; }";
 
   imports = [
     ./modules/direnv
@@ -27,7 +29,7 @@ with
     pavucontrol
     rtv
     slock
-    spotify
+    # spotify
   ];
 
   home.keyboard.layout = "br";

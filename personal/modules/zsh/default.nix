@@ -59,6 +59,7 @@ with
         '';
 
       profileExtra = ''
+      export LOCALE_ARCHIVE=/usr/bin/locale
       export XDG_DATA_DIRS=/usr/share:/usr/local/share
       '';
 

@@ -30,13 +30,13 @@ let
       \}
       '';
   };
-  my-dracula = {
-    plugin = pkgs.vimPlugins.dracula-vim;
+  my-theme = {
+    plugin = pkgs.vimPlugins.papercolor-theme;
     config = ''
-    set background=dark
-    augroup dracula
+    set background=light
+    augroup theme
       au!
-      autocmd VimEnter * colorscheme dracula
+      autocmd VimEnter * colorscheme PaperColor
     augroup END
     '';
   };
@@ -81,8 +81,8 @@ in
       plugins = with pkgs.vimPlugins; [
         my-ale
         my-ctrlp
-        my-dracula
         my-lsc
+        my-theme
         vim-commentary
         vim-eunuch
         vim-fugitive
