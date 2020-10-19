@@ -1,4 +1,16 @@
 {
+    "deoplete-vim-lsc": {
+        "branch": "master",
+        "description": "deoplete source for vim-lsc.",
+        "homepage": null,
+        "owner": "hrsh7th",
+        "repo": "deoplete-vim-lsc",
+        "rev": "b965e00435712d3249f09f986a0d0e6470f7ca4e",
+        "sha256": "13gk27zqr5y859r81g6k206ndj4gr8yk9pbb63zibl12gs7zbn2q",
+        "type": "tarball",
+        "url": "https://github.com/hrsh7th/deoplete-vim-lsc/archive/b965e00435712d3249f09f986a0d0e6470f7ca4e.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "home-manager": {
         "branch": "master",
         "description": "Manage a user environment using Nix  [maintainer=@rycee] ",
@@ -41,10 +53,10 @@
         "homepage": "",
         "owner": "NixOs",
         "repo": "nixpkgs",
-        "rev": "ffac55a0da5def807b2610ec013044fba3a5f33b",
-        "sha256": "03kkn7adqi4vpfmfzqfyz6i77ix7h442x9aq9ldhlsp7zrpf20q7",
+        "rev": "46bd18fff6d4693c901f3e18447abf211ed6a5d0",
+        "sha256": "1xd3xgjd29q99684g0987dx1sbxjdark1bd93qi4ajbg2ijd1syr",
         "type": "tarball",
-        "url": "https://github.com/NixOs/nixpkgs/archive/ffac55a0da5def807b2610ec013044fba3a5f33b.tar.gz",
+        "url": "https://github.com/NixOs/nixpkgs/archive/46bd18fff6d4693c901f3e18447abf211ed6a5d0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }

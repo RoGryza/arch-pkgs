@@ -1,13 +1,11 @@
 { pkgs, ... }:
 {
   programs.neovim = {
-    configure = {
-      packages.rogryza-languages.start = with pkgs.vimPlugins; [
-        vim-javascript
-        vim-jsonnet
-        vim-nix
-      ];
-    };
+    plugins = with pkgs.vimPlugins; [
+      vim-javascript
+      vim-jsonnet
+      vim-nix
+    ];
 
     # TODO manage jdtls installation
     lsc.serverCommands.java = "jdtls";

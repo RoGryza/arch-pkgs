@@ -1,5 +1,5 @@
+{ pkgs, ... }:
 let
-  pkgs = import ./nix/nixpkgs.nix {};
   sources = import ./nix/sources.nix;
   oldpkgs = import sources.oldpkgs {};
 in
