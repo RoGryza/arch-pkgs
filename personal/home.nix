@@ -1,5 +1,7 @@
 let
   pkgs = import ./nix/nixpkgs.nix {};
+  sources = import ./nix/sources.nix;
+  oldpkgs = import sources.oldpkgs {};
 in
   with pkgs.lib;
 {
@@ -15,7 +17,7 @@ in
     ./modules/ssh.nix
     ./modules/tmux
     ./modules/x11
-    ./modules/zsh
+    (import ./modules/zsh { inherit pkgs; oldGlibcLocales = oldpkgs.glibcLocales; })
   ];
 
   home.packages = with pkgs; [
@@ -29,7 +31,7 @@ in
     pavucontrol
     rtv
     slock
-    # spotify
+    spotify
   ];
 
   home.keyboard.layout = "br";

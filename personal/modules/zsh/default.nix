@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, oldGlibcLocales, ... }:
 with
   pkgs.lib;
 {
@@ -37,7 +37,9 @@ with
       in
         ''
         # Fix for nix locale
-        export LOCALE_ARCHIVE="${pkgs.glibcLocales}/lib/locale/locale-archive:/usr/bin/locale"
+        export LOCALE_ARCHIVE_2_11="${oldGlibcLocales}/lib/locale/locale-archive"
+        export LOCALE_ARCHIVE_2_21="${oldGlibcLocales}/lib/locale/locale-archive"
+        export LOCALE_ARCHIVE_2_27="${pkgs.glibcLocales}/lib/locale/locale-archive"
 
         # Prompt
         autoload -Uz promptinit && promptinit

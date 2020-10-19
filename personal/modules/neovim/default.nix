@@ -9,6 +9,12 @@ let
     let g:ale_fix_on_save = 1
     '';
   };
+  my-deoplete = {
+    plugin = pkgs.vimPlugins.deoplete-nvim;
+    config = ''
+    let g:deoplete#enable_at_startup = 1
+    '';
+  };
   my-lsc = {
       plugin = pkgs.vimPlugins.vim-lsc;
       config = ''
@@ -77,19 +83,23 @@ in
       vimAlias = true;
       vimdiffAlias = true;
 
-      extraConfig = builtins.readFile ./init.vim;
-      plugins = with pkgs.vimPlugins; [
-        my-ale
-        my-ctrlp
-        my-lsc
-        my-theme
-        vim-commentary
-        vim-eunuch
-        vim-fugitive
-        vim-gitgutter
-        vim-repeat
-        vim-surround
-      ];
+      configure = {
+        customRC = builtins.readFile ./init.vim;
+        packages.rogryza.start = with pkgs.vimPlugins; [
+          my-ale
+          my-ctrlp
+          my-deoplete
+          my-lsc
+          # deoplete-vim-lsc
+          my-theme
+          vim-commentary
+          vim-eunuch
+          vim-fugitive
+          vim-gitgutter
+          vim-repeat
+          vim-surround
+        ];
+      };
     };
   };
 }

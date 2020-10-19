@@ -5,4 +5,6 @@ let
     niv = (pkgs.callPackage sources.niv {}).niv;
   };
 in
-  import sources.nixpkgs { overlays = [overlay]; config = {}; }
+  import sources.nixpkgs { overlays = [overlay]; config = {
+    allowUnfree = true;
+  }; }
