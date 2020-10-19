@@ -37,9 +37,7 @@ with
       in
         ''
         # Fix for nix locale
-        export LOCALE_ARCHIVE_2_11="$(nix-build --no-out-link "<nixpkgs>" -A glibcLocales)/lib/locale/locale-archive"
-        export LOCALE_ARCHIVE_2_27="$(nix-build --no-out-link "<nixpkgs>" -A glibcLocales)/lib/locale/locale-archive"
-        export LOCALE_ARCHIVE="/usr/bin/locale"
+        export LOCALE_ARCHIVE="${pkgs.glibcLocales}/lib/locale/locale-archive:/usr/bin/locale"
 
         # Prompt
         autoload -Uz promptinit && promptinit

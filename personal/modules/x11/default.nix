@@ -47,8 +47,6 @@ in {
 
     xrdb -merge ~/.Xresources
 
-    (sleep 5 && xterm)&
-
     errorlog="$HOME/.xsession-errors"
     if ( cp /dev/null "$errorlog" 2> /dev/null ); then
       chmod 600 "$errorlog"
