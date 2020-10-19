@@ -57,6 +57,10 @@ in {
     '';
   };
 
+  xresources.properties = {
+    "*.font" = "Source Code Pro:pixelsize=18";
+    "rofi.font" = "Source Code Pro 14";
+  };
   xresources.extraConfig = builtins.readFile (
     pkgs.fetchFromGitHub {
       owner = "dracula";
