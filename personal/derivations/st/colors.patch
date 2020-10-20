@@ -1,0 +1,29 @@
+From f301690d4b816a561331539a988e958513126af8 Mon Sep 17 00:00:00 2001
+From: Rodrigo Gryzinski <rogryza@rogryza.com>
+Date: Tue, 20 Oct 2020 15:45:56 -0300
+Subject: [PATCH] switch defaultfg and defaultbg for use with Xresources
+
+---
+ config.def.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/config.def.h b/config.def.h
+index 6f05dce..caf9755 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -127,8 +127,8 @@ static const char *colorname[] = {
+  * Default colors (colorname index)
+  * foreground, background, cursor, reverse cursor
+  */
+-unsigned int defaultfg = 7;
+-unsigned int defaultbg = 0;
+-static unsigned int defaultcs = 256;
+-static unsigned int defaultrcs = 257;
++unsigned int defaultfg = 257;
++unsigned int defaultbg = 256;
++static unsigned int defaultcs = 257;
++static unsigned int defaultrcs = 256;
+ 
+-- 
+2.28.0
+

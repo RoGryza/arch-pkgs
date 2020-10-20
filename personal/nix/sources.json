@@ -58,5 +58,18 @@
         "type": "tarball",
         "url": "https://github.com/NixOs/nixpkgs/archive/46bd18fff6d4693c901f3e18447abf211ed6a5d0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "xresources-theme": {
+        "branch": "master",
+        "description": "A big (huge) collection of rxvt / xterm terminal themes",
+        "homepage": null,
+        "owner": "logico-dev",
+        "path": "light/PaperColor.Xresources",
+        "repo": "Xresources-themes",
+        "rev": "1df25bf5b2e639e8695e8f2eb39e9d373af3b888",
+        "sha256": "0ifaa3gj9rlxpazvpy5bbi62l4chjhkvfs2kij3dhwkiqfqflprc",
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/logico-dev/Xresources-themes/1df25bf5b2e639e8695e8f2eb39e9d373af3b888/light/PaperColor.Xresources",
+        "url_template": "https://raw.githubusercontent.com/<owner>/<repo>/<rev>/<path>"
     }
 }

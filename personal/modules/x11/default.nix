@@ -1,7 +1,8 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, ...  }:
 with lib;
 let
-  my-st = pkgs.callPackage ../../derivations/st.nix {};
+  sources = import ../../nix/sources.nix;
+  my-st = pkgs.callPackage ../../derivations/st {};
   my-dwm = with pkgs; (callPackage ../../derivations/dwm {
     cmds = {
       run = "${rofi}/bin/rofi -modi drun -show drun";
@@ -59,14 +60,7 @@ in {
     "*.font" = "Source Code Pro:pixelsize=18";
     "rofi.font" = "Source Code Pro 14";
   };
-  xresources.extraConfig = builtins.readFile (
-    pkgs.fetchFromGitHub {
-      owner = "dracula";
-      repo = "xresources";
-      rev = "8de11976678054f19a9e0ec49a48ea8f9e881a05";
-      sha256 = "12wmjynk0ryxgwb0hg4kvhhf886yvjzkp96a5bi9j0ryf3pc9kx7";
-    } + "/Xresources"
-  );
+  xresources.extraConfig = builtins.readFile (sources.xresources-theme);
 
   programs.rofi.enable = true;
 }
