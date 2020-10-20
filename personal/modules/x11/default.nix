@@ -10,7 +10,7 @@ let
       term = "st";
       tmux = "st -e ${tmux}/bin/tmux new-session";
       browser = "/usr/bin/firefox";
-      lock = "${slock}/bin/slock";
+      lock = "slock";
       pass = "${pass}/bin/passmenu";
     };
   });

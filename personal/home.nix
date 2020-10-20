@@ -30,7 +30,6 @@ in
     newsboat
     pavucontrol
     rtv
-    slock
     spotify
   ];
 

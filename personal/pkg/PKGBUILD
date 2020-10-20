@@ -1,6 +1,6 @@
 # Maintainer: Rodrigo Gryzinski <rogryza@gmail.com>
 pkgname='rogryza'
-pkgver='0.0.5'
+pkgver='0.0.6'
 pkgrel=1
 pkgdesc='Personal config files'
 arch=('x86_64')
@@ -59,6 +59,7 @@ depends=(
   'refind'
   'ripgrep'
   'sed'
+  'slock'
   'sudo'
   'texinfo'
   'ttf-fira-code'
