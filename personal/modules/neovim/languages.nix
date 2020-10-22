@@ -11,6 +11,11 @@
       }
     ];
 
+    ale.fixers = {
+      javascript = [ "prettier" ];
+      typescript = [ "prettier" "tslint" ];
+    };
+
     # TODO manage jdtls installation
     lsc.serverCommands.java = "jdtls";
     # TODO manage rust and cargo components installation

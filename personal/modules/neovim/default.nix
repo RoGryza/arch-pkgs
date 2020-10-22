@@ -3,13 +3,16 @@ with
   lib;
 let
   inherit (import ./utils.nix { inherit lib; }) toVim;
+  cfg = config.programs.neovim;
   my-plugins = [
     {
       plugin = pkgs.vimPlugins.ale;
       config = ''
-      let g:ale_completion_enabled = 1
       let g:ale_disable_lsp = 1
       let g:ale_fix_on_save = 1
+
+      let g:ale_linters = ${toVim cfg.ale.linters}
+      let g:ale_fixers = ${toVim cfg.ale.fixers}
       '';
     }
     {
@@ -49,7 +52,7 @@ let
               log_level = -1;
               suppress_stderr = true;
             })
-            config.programs.neovim.lsc.serverCommands)
+            cfg.lsc.serverCommands)
         }'';
     }
     {
@@ -83,9 +86,23 @@ let
 in
 {
   options = {
-    programs.neovim.lsc.serverCommands = mkOption {
-      type = types.attrsOf types.string;
-      default = {};
+    programs.neovim =  {
+      lsc.serverCommands = mkOption {
+        type = types.attrsOf types.string;
+        default = {};
+      };
+
+      ale.linters = mkOption {
+        type = types.attrsOf (types.listOf types.string);
+        default = {};
+      };
+
+      ale.fixers = mkOption {
+        type = types.attrsOf (types.listOf types.string);
+        default = {
+          "*" = [ "remove_trailing_lines" "trim_whitespace" ];
+        };
+      };
     };
   };
 
