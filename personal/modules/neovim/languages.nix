@@ -7,7 +7,7 @@
       vim-nix
       {
         plugin = yats-vim;
-        config = "set re=0;";
+        config = "set re=0";
       }
     ];
 

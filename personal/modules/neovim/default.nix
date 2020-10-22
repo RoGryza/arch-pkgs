@@ -14,16 +14,32 @@ let
       plugin = pkgs.vimPlugins.deoplete-nvim;
       config = ''
       let g:deoplete#enable_at_startup = 1
+
+      inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ deoplete#manual_complete()
+      inoremap <silent><expr> <S-TAB>
+      \ pumvisible() ? "\<C-p>" :
+      \ <SID>check_back_space() ? "\<S-TAB>" :
+      \ deoplete#manual_complete()
+      function! s:check_back_space() abort
+        let col = col('.') - 1
+        return !col || getline('.')[col - 1]  =~ '\s'
+      endfunction
       '';
     }
     {
         plugin = pkgs.vimPlugins.vim-lsc;
         config = ''
-        let g:lsc_auto_map = v:true
         let g:lsc_enable_autocomplete = v:true
         let g:lsc_enable_diagnostics = v:false
         let g:lsc_trace_level = 'off'
         autocmd CompleteDone * silent! pclose
+        let g:lsc_auto_map = {
+        \  'defaults': v:true,
+        \  'PreviousReference': ${"''"},
+        \}
         let g:lsc_server_commands = {
           ${strings.concatStringsSep ",\n" (attrsets.mapAttrsToList
             (k: v: ''
