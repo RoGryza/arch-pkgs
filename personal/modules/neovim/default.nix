@@ -1,6 +1,8 @@
 { config, pkgs, lib, ... }:
-with lib;
+with
+  lib;
 let
+  inherit (import ./utils.nix { inherit lib; }) toVim;
   my-plugins = [
     {
       plugin = pkgs.vimPlugins.ale;
@@ -40,18 +42,15 @@ let
         \  'defaults': v:true,
         \  'PreviousReference': ${"''"},
         \}
-        let g:lsc_server_commands = {
-          ${strings.concatStringsSep ",\n" (attrsets.mapAttrsToList
-            (k: v: ''
-            \  '${k}': {
-            \    'command': '${v}',
-            \    'log_level': -1,
-            \    'suppress_stderr': v:true,
-            \  }'')
-            config.programs.neovim.lsc.serverCommands
-          )}
-        \}
-        '';
+        let g:lsc_server_commands = ${toVim
+          (attrsets.mapAttrs
+            (_: v: {
+              command = v;
+              log_level = -1;
+              suppress_stderr = true;
+            })
+            config.programs.neovim.lsc.serverCommands)
+        }'';
     }
     {
       plugin = pkgs.vimPlugins.papercolor-theme;
