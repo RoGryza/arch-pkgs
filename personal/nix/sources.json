@@ -59,6 +59,18 @@
         "url": "https://github.com/NixOs/nixpkgs/archive/46bd18fff6d4693c901f3e18447abf211ed6a5d0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "vim-svelte": {
+        "branch": "main",
+        "description": "Vim syntax highlighting and indentation for Svelte 3 components.",
+        "homepage": "",
+        "owner": "evanleck",
+        "repo": "vim-svelte",
+        "rev": "f63fa77d621b25092081cce815effd7fbc169113",
+        "sha256": "0j7j6ibrylv32y0vw002yayfg7xia59nm2952bhbwlkl6m2cwnz9",
+        "type": "tarball",
+        "url": "https://github.com/evanleck/vim-svelte/archive/f63fa77d621b25092081cce815effd7fbc169113.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "xresources-theme": {
         "branch": "master",
         "description": "A big (huge) collection of rxvt / xterm terminal themes",
