@@ -1,4 +1,7 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
+let
+  cfg = config.programs.tmux;
+in
 {
   programs.tmux = {
     enable = true;
@@ -15,4 +18,17 @@
 
     plugins = [ pkgs.tmuxPlugins.sessionist ];
   };
+
+  programs.neovim.plugins = [
+    {
+      plugin = pkgs.vimPlugins.vim-tmux-navigator;
+      config = ''
+      let g:tmux_navigator_no_mappings = 1
+      nnoremap <silent> <C-w>h :TmuxNavigateLeft<cr>
+      nnoremap <silent> <C-w>j :TmuxNavigateDown<cr>
+      nnoremap <silent> <C-w>k :TmuxNavigateUp<cr>
+      nnoremap <silent> <C-w>l :TmuxNavigateRight<cr>
+      '';
+    }
+  ];
 }
