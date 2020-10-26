@@ -71,6 +71,9 @@ let
       let g:ctrlp_open_new_file = 'r'
       let g:ctrlp_switch_buffer = 0
 
+      let g:ctrlp_user_command = 'fd --type f --color=never "" %s'
+      let g:ctrlp_use_caching = 0
+
       let g:ctrlp_custom_ignore = {
         \ 'dir':  'node_modules\|__pycache__',
         \ 'file': '\v\.pyc$',
@@ -80,6 +83,12 @@ let
       nnoremap <C-P> :CtrlP .<CR>
       nnoremap <C-B> :CtrlPBuffer<CR>
       nnoremap <C-T> :CtrlPTag<CR>
+      '';
+    }
+    {
+      plugin = pkgs.vimPlugins.cpsm;
+      config = ''
+      let g:ctrlp_match_func = { 'match': 'cpsm#CtrlPMatch' }
       '';
     }
   ];
