@@ -73,6 +73,7 @@ augroup ListChars2
   autocmd ColorScheme * hi! link SpecialKey Normal
 augroup END
 
+" Navigation mappings
 nnoremap j gj
 nnoremap k gk
 
@@ -84,6 +85,9 @@ nnoremap <Leader>w :w<CR>
 nnoremap <Leader><space> :nohlsearch<CR>
 
 nnoremap <space> za
+
+" Incremental substitution
+set inccommand=nosplit
 
 " direnv .lvimrc integration
 function! s:direnv_init() abort
