@@ -37,6 +37,6 @@
     # TODO manage rust and cargo components installation
     lsc.serverCommands.rust = "rust-analyzer";
 
-    lsc.serverCommands.ts = "${pkgs.nodePackages_latest.typescript-language-server} --stdio";
+    lsc.serverCommands.ts = "${pkgs.nodePackages.typescript-language-server} --stdio";
   };
 }

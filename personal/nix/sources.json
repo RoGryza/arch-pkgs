@@ -17,10 +17,10 @@
         "homepage": "https://rycee.gitlab.io/home-manager/",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "abaebf3b346c4bef500c5bd2fdebbed109261a0c",
-        "sha256": "1gcv2ni4nsicpmi4ain568msvgxch8cj04fxf6qgvhdklmh2y84k",
+        "rev": "28eb093a1e6999d52e60811008b4bfc7e20cc591",
+        "sha256": "0nfpby733q96vnmp2cbz25bnp3d7vkgmramn4hs1sn5xavhb1mbp",
         "type": "tarball",
-        "url": "https://github.com/nix-community/home-manager/archive/abaebf3b346c4bef500c5bd2fdebbed109261a0c.tar.gz",
+        "url": "https://github.com/nix-community/home-manager/archive/28eb093a1e6999d52e60811008b4bfc7e20cc591.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {
@@ -41,10 +41,10 @@
         "homepage": "",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "7cfafd014f88e154de2592e2c2a48aeacd740eb3",
-        "sha256": "04kacgfxdvkq0qvkf2vxij0smmksbaf14n7r0jgbbrvqbih789jx",
+        "rev": "6b5f85a62c445c14ca344bbe0de66927b13e0c20",
+        "sha256": "0n6wxd550a5ah4pa33k4jdq7pb77nqxby0svr0i1j99rf8lzawvh",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/7cfafd014f88e154de2592e2c2a48aeacd740eb3.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/6b5f85a62c445c14ca344bbe0de66927b13e0c20.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "oldpkgs": {
@@ -53,10 +53,10 @@
         "homepage": "",
         "owner": "NixOs",
         "repo": "nixpkgs",
-        "rev": "4c07f77124b52806f43a8223f90c21313705438f",
-        "sha256": "0n1q1si6ab4s3wma0zs0m59c8sqc2sbpqavclqp3ha13sxrmckdr",
+        "rev": "4512dac960f3833cf24cdbd742b63cb447bbdd9a",
+        "sha256": "1rba0idgmbxd1x93x5srmx001snpa5wa3c3hdbf83v3dhy2561fp",
         "type": "tarball",
-        "url": "https://github.com/NixOs/nixpkgs/archive/4c07f77124b52806f43a8223f90c21313705438f.tar.gz",
+        "url": "https://github.com/NixOs/nixpkgs/archive/4512dac960f3833cf24cdbd742b63cb447bbdd9a.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "vim-svelte": {
