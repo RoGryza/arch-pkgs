@@ -33,6 +33,5 @@ in
     spotify
   ];
 
-  home.keyboard.layout = "br";
   home.language.base = "en_US.UTF-8";
 }
