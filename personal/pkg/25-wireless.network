@@ -2,9 +2,7 @@
 RouteMetric=20
 
 [Match]
-Name=wlp7s0
+Name=wl*
 
 [Network]
-DHCP=yes 
-
-
+DHCP=yes

@@ -27,6 +27,7 @@ manage taskrc, remove "ignore hostname"
 add vim-fugitive
 wrap nix-prefetch-url in vim
 check out dwm-status
+add wpa_supplicant@interface as dependency of rogryza.target
 
 -wifi
 -fix permissions for suoders.d and others
