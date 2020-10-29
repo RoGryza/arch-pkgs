@@ -7,6 +7,9 @@
   rogryza-tl = { pkgs, ... }: {
     imports = [ ./home.nix ];
     home.packages = with pkgs; [ slack ];
-    services.gpg-agent.sshKeys = [ "71014621DE5C3BFFE7C014193FE1FA377AE40438" ];
+    services.gpg-agent.sshKeys = [
+      "71014621DE5C3BFFE7C014193FE1FA377AE40438"
+      "6199884D574FA800EE6D72D4F151EBBC6B3B8192"
+    ];
   };
 }

@@ -2,6 +2,11 @@
 with
   pkgs.lib;
 {
+  # These are required to have XDG_DATA_DIRS available
+  xdg.enable=true;
+  xdg.mime.enable=true;
+  targets.genericLinux.enable=true;
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -60,7 +65,7 @@ with
 
       profileExtra = ''
       export LOCALE_ARCHIVE=/usr/bin/locale
-      export XDG_DATA_DIRS=/usr/share:/usr/local/share
+      export XDG_DATA_DIRS=$HOME/.nix-profile/share:/usr/share:/usr/local/share
       '';
 
       shellAliases = {
