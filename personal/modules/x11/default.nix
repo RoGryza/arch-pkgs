@@ -60,6 +60,7 @@ in {
       "LOCALE_ARCHIVE_2_32"
     ];
     xsession.initExtra = "xsetroot -solid rgb:00/00/00";
+    xsession.profileExtra = config.programs.zsh.profileExtra;
     systemd.user.services.dwm-status = {
       Unit = {
         Description = "Update dwm status bar";

@@ -41,10 +41,6 @@ with
       ];
       in
         ''
-        # Fix for nix locale
-        export LOCALE_ARCHIVE="/lib/locale/locale-archive"
-        export LOCALE_ARCHIVE_2_32="${pkgs.glibcLocales}/lib/locale/locale-archive"
-
         # Prompt
         autoload -Uz promptinit && promptinit
         function custom_prompt() {
@@ -65,7 +61,13 @@ with
         '';
 
       profileExtra = ''
-      . "${pkgs.nix}/etc/profile.d/nix.sh"
+      # Fix for nix locale
+      export LOCALE_ARCHIVE="${pkgs.glibcLocales}/lib/locale/locale-archive"
+      # TODO get LOCALE_ARCHIVE from pkgs
+      export LOCALE_ARCHIVE_2_32="${pkgs.glibcLocales}/lib/locale/locale-archive"
+      export LANG="${config.home.language.base}"
+      export LC_ALL="${config.home.language.base}"
+
       . "${config.home.profileDirectory}/etc/profile.d/hm-session-vars.sh"
       '';
 
