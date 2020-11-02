@@ -1,7 +1,6 @@
 { pkgs, ... }:
 let
   sources = import ./nix/sources.nix;
-  oldpkgs = import sources.oldpkgs {};
 in
   with pkgs.lib;
 {
@@ -17,21 +16,29 @@ in
     ./modules/ssh.nix
     ./modules/tmux
     ./modules/x11
-    (import ./modules/zsh { inherit pkgs; oldGlibcLocales = oldpkgs.glibcLocales; })
+    ./modules/zsh
   ];
 
   home.packages = with pkgs; [
     baobab
     buku
+    fasd
+    fd
     github-cli
     jq
+    lsd
     mplayer
     mupdf
     newsboat
     pavucontrol
+    ripgrep
     rtv
     spotify
   ];
 
   home.language.base = "en_US.UTF-8";
+  targets.genericLinux = {
+    enable = true;
+    extraXdgDataDirs = [ "/usr/share" "/usr/local/share/" ];
+  };
 }

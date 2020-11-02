@@ -39,7 +39,15 @@ in {
     };
   };
 
-  config = {
+  config = let
+    dwm-status = pkgs.writeScript "dwm-status" ''
+      #!/bin/sh
+      while true; do
+        xsetroot -name "BAT $(cat /sys/class/power_supply/BAT0/capacity)% | $(date '+%a %d/%m %R')"
+        sleep 1m
+      done
+    '';
+  in {
     home.packages = with pkgs; [
       my-dwm
       my-st
@@ -47,7 +55,26 @@ in {
 
     xsession.enable = true;
     xsession.windowManager.command = "${my-dwm}/bin/dwm";
-    xsession.importedVariables = [ "LOCALE_ARCHIVE" ];
+    xsession.importedVariables = [
+      "LOCALE_ARCHIVE"
+      "LOCALE_ARCHIVE_2_11"
+      "LOCALE_ARCHIVE_2_21"
+      "LOCALE_ARCHIVE_2_27"
+    ];
+    systemd.user.services.dwm-status = {
+      Unit = {
+        Description = "Update dwm status bar";
+        After = [ "graphical-session-pre.target" ];
+        PartOf = [ "hm-graphical-session.target" ];
+      };
+
+      Install = { WantedBy = [ "hm-graphical-session.target" ]; };
+
+      Service = {
+        Type = "simple";
+        ExecStart = "${dwm-status.out}";
+      };
+    };
     home.file.".xinitrc" = {
       executable = true;
       text = ''
@@ -63,10 +90,7 @@ in {
         unset f
       fi
 
-      while true; do
-        xsetroot -name "BAT $(cat /sys/class/power_supply/BAT0/capacity)% | $(date '+%a %d/%m %R')"
-        sleep 1m
-      done &
+      ${dwm-status.out}&
 
       ${pkgs.autocutsel}/bin/autocutsel -fork &
       ${pkgs.autocutsel}/bin/autocutsel -selection PRIMARY -fork &

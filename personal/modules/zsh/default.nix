@@ -1,4 +1,4 @@
-{ pkgs, oldGlibcLocales, ... }:
+{ config, pkgs, ... }:
 with
   pkgs.lib;
 {
@@ -42,9 +42,8 @@ with
       in
         ''
         # Fix for nix locale
-        export LOCALE_ARCHIVE_2_11="${oldGlibcLocales}/lib/locale/locale-archive"
-        export LOCALE_ARCHIVE_2_21="${oldGlibcLocales}/lib/locale/locale-archive"
-        export LOCALE_ARCHIVE_2_27="${pkgs.glibcLocales}/lib/locale/locale-archive"
+        export LOCALE_ARCHIVE="/lib/locale/locale-archive"
+        export LOCALE_ARCHIVE_2_32="${pkgs.glibcLocales}/lib/locale/locale-archive"
 
         # Prompt
         autoload -Uz promptinit && promptinit
@@ -59,13 +58,15 @@ with
         stty stop undef
         stty start undef
 
-        source /usr/share/doc/pkgfile/command-not-found.zsh
+        [ -f /usr/share/doc/pkgfile/command-not-found.zsh ] && \
+          source /usr/share/doc/pkgfile/command-not-found.zsh
+
         ${builtins.readFile ./keyboard.zsh}
         '';
 
       profileExtra = ''
-      export LOCALE_ARCHIVE=/usr/bin/locale
-      export XDG_DATA_DIRS=$HOME/.nix-profile/share:/usr/share:/usr/local/share
+      . "${pkgs.nix}/etc/profile.d/nix.sh"
+      . "${config.home.profileDirectory}/etc/profile.d/hm-session-vars.sh"
       '';
 
       shellAliases = {
