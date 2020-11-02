@@ -57,10 +57,9 @@ in {
     xsession.windowManager.command = "${my-dwm}/bin/dwm";
     xsession.importedVariables = [
       "LOCALE_ARCHIVE"
-      "LOCALE_ARCHIVE_2_11"
-      "LOCALE_ARCHIVE_2_21"
-      "LOCALE_ARCHIVE_2_27"
+      "LOCALE_ARCHIVE_2_32"
     ];
+    xsession.initExtra = "xsetroot -solid rgb:00/00/00";
     systemd.user.services.dwm-status = {
       Unit = {
         Description = "Update dwm status bar";
@@ -97,6 +96,7 @@ in {
 
       xrandr --auto
       xrdb -merge ~/.Xresources
+      ${config.xsession.initExtra}
 
       errorlog="$HOME/.xsession-errors"
       if ( cp /dev/null "$errorlog" 2> /dev/null ); then

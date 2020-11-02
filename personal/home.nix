@@ -21,6 +21,7 @@ in
 
   home.packages = with pkgs; [
     baobab
+    bat
     buku
     fasd
     fd
