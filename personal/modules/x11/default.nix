@@ -71,6 +71,7 @@ in {
       ${pkgs.autocutsel}/bin/autocutsel -fork &
       ${pkgs.autocutsel}/bin/autocutsel -selection PRIMARY -fork &
 
+      xrandr --auto
       xrdb -merge ~/.Xresources
 
       errorlog="$HOME/.xsession-errors"
