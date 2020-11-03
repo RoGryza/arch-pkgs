@@ -1,8 +1,10 @@
 {
-  rogryza = {
+  rogryza = { pkgs, ... }: {
     imports = [ ./home.nix ];
+
     home.keyboard.layout = "br";
     services.gpg-agent.sshKeys = [ "8D9342B7F994DE2B879A03F4CF270B470301BE9C" ];
+    programs.scrot.enable = true;
     programs.passff-host.enable = true;
   };
   rogryza-tl = { pkgs, ... }: {

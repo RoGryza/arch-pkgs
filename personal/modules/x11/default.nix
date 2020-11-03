@@ -15,6 +15,8 @@ let
     };
   });
 in {
+  imports = [ ./screenshot.nix ];
+
   options = {
     xsession.programs.launcher = mkOption {
       type = types.str;

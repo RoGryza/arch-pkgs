@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=scrot
+Version=1.1
+GenericName=Screenshot
+Comment=Copy an area of the screen to the clipboard
+Exec=scrot-xclip
+Terminal=false
