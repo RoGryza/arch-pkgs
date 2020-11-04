@@ -13,6 +13,7 @@ in
     ./modules/neovim
     ./modules/gpg.nix
     ./modules/pass.nix
+    ./modules/rofi.nix
     ./modules/ssh.nix
     ./modules/tmux
     ./modules/x11
@@ -42,4 +43,5 @@ in
     enable = true;
     extraXdgDataDirs = [ "/usr/share" "/usr/local/share/" ];
   };
+  programs.rofi.enable = true;
 }
