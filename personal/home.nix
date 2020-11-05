@@ -10,6 +10,7 @@ in
   imports = [
     ./modules/direnv
     ./modules/dunst.nix
+    ./modules/firefox.nix
     ./modules/neovim
     ./modules/gpg.nix
     ./modules/pass.nix
