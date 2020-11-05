@@ -2,7 +2,7 @@
 with
   lib;
 let
-  inherit (import ./utils.nix { inherit lib; }) toVim;
+  inherit (import ../../nix/utils.nix { inherit lib; }) toVim;
   cfg = config.programs.neovim;
   my-plugins = [
     {

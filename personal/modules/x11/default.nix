@@ -20,7 +20,6 @@ in {
   options = {
     xsession.programs.launcher = mkOption {
       type = types.str;
-      default = "${pkgs.rofi}/bin/rofi -modi drun -show drun";
     };
     xsession.programs.term = mkOption {
       type = types.str;
@@ -111,10 +110,7 @@ in {
 
     xresources.properties = {
       "*.font" = "DejaVu Sans Mono:pixelsize=18";
-      "rofi.font" = "DejaVu Sans Mono 14";
     };
     xresources.extraConfig = builtins.readFile (sources.xresources-theme);
-
-    programs.rofi.enable = true;
   };
 }
