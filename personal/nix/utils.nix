@@ -45,6 +45,7 @@ rec {
 
   raw = v: { _raw = v; };
   isRaw = v: isAttrs v && hasAttr "_raw" v && isString v._raw;
+  types.raw = mkOptionType { name = "raw"; check = isRaw; };
 
   toRasi =
     let
