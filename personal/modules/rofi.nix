@@ -44,7 +44,14 @@ in
 
   config = {
     xsession.programs.launcher = mkIf (cfg.enable)
-      "${cfg.pkg}/bin/rofi -modi drun -show drun -drun-show-actions";
+      # TODO check why it's pulling the wrong font from Xresources
+      [
+        "${cfg.pkg}/bin/rofi"
+        "-modi" "drun"
+        "-show" "drun"
+        "-drun-show-actions"
+        "-font" cfg.config."*".font
+      ];
 
     home.file = attrsets.optionalAttrs (cfg.enable) {
       "${config.xdg.configHome}/rofi/config.rasi" = {

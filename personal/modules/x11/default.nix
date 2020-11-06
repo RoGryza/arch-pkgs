@@ -5,38 +5,41 @@ let
   sources = import ../../nix/sources.nix;
   my-st = pkgs.callPackage ../../derivations/st {};
   my-dwm = (pkgs.callPackage ../../derivations/dwm {
-    cmds = {
-      run = programs.launcher;
-      term = programs.term;
-      tmux = "${programs.term} -e ${pkgs.tmux}/bin/tmux new-session";
-      browser = programs.browser;
-      lock = programs.lock;
-      pass = programs.pass;
-    };
+    cmds =
+      let
+        cmdLine = xs: strings.concatStringsSep " " (map strings.escapeShellArg xs);
+      in
+      attrsets.mapAttrs (_: cmdLine) {
+        run = programs.launcher;
+        term = programs.term;
+        tmux = programs.term ++ [
+          "-e"
+          "${pkgs.tmux}/bin/tmux"
+          "new-session"
+        ];
+        browser = programs.browser;
+        lock = programs.lock;
+        pass = programs.pass;
+      };
   });
 in {
   imports = [ ./screenshot.nix ];
 
-  options = {
-    xsession.programs.launcher = mkOption {
-      type = types.str;
-    };
-    xsession.programs.term = mkOption {
-      type = types.str;
-      # TODO figure out why my-st.out doesn't work
-      default = "st";
-    };
-    xsession.programs.browser = mkOption {
-      type = types.str;
-      default = "/usr/bin/firefox";
-    };
-    xsession.programs.lock = mkOption {
-      type = types.str;
-      default = "slock";
-    };
-    xsession.programs.pass = mkOption {
-      type = types.str;
-      default = "${pkgs.pass}/bin/passmenu";
+  options =
+    let
+      mkProgramOption = attrs: mkOption (
+        { type = with types; listOf str; } // attrs
+      );
+    in {
+    xsession.programs = {
+      launcher = mkProgramOption { };
+      term = mkProgramOption {
+        # TODO figure out why my-st.out doesn't work
+        default = [ "st" ];
+      };
+      browser = mkProgramOption { default = [ "/usr/bin/firefox" ]; };
+      lock = mkProgramOption { default = [ "slock" ]; };
+      pass = mkProgramOption { default = [ "${pkgs.pass}/bin/passmenu" ]; };
     };
   };
 
