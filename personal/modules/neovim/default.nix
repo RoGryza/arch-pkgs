@@ -140,5 +140,7 @@ in
         vim-surround
       ] ++ my-plugins;
     };
+
+    programs.zsh.profileExtra = optionalString (cfg.enable) "export EDITOR=nvim";
   };
 }
