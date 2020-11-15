@@ -3,7 +3,7 @@ with lib;
 let
   inherit (config.xsession) programs;
   sources = import ../../nix/sources.nix;
-  my-st = pkgs.callPackage ../../derivations/st {};
+  my-st = pkgs.callPackage ../../derivations/st.nix {};
   my-dwm = (pkgs.callPackage ../../derivations/dwm {
     cmds =
       let
@@ -114,6 +114,6 @@ in {
     xresources.properties = {
       "*.font" = "DejaVu Sans Mono:pixelsize=18";
     };
-    xresources.extraConfig = builtins.readFile (sources.xresources-theme);
+    xresources.extraConfig = builtins.readFile "${(sources.solarized-xresources)}/Xresources.dark";
   };
 }
