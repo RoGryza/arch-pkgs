@@ -3,7 +3,7 @@ with lib;
 let
   inherit (config.xsession) programs;
   sources = import ../../nix/sources.nix;
-  my-st = pkgs.callPackage ../../derivations/st.nix {};
+  my-st = pkgs.callPackage ../../derivations/st {};
   my-dwm = (pkgs.callPackage ../../derivations/dwm {
     cmds =
       let
