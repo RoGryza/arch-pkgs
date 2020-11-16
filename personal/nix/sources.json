@@ -41,11 +41,30 @@
         "homepage": "",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "0bf298df24f721a7f85c580339fb7eeff64b927c",
-        "sha256": "0kdx3pz0l422d0vvvj3h8mnq65jcg2scb13dc1z1lg2a8cln842z",
+        "rev": "5d820315cd08bef23e276deebdc9f6ee32704dbf",
+        "sha256": "0zn508hlvpp7f96j9c73rmfy6kifaslgn02hdr1jmpkbmg5s2ynb",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/0bf298df24f721a7f85c580339fb7eeff64b927c.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/5d820315cd08bef23e276deebdc9f6ee32704dbf.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "solarized-xresources": {
+        "branch": "master",
+        "description": "Solarized for X Windows",
+        "homepage": "http://ethanschoonover.com/solarized",
+        "owner": "solarized",
+        "repo": "Xresources",
+        "rev": "025ceddbddf55f2eb4ab40b05889148aab9699fc",
+        "sha256": "0lxv37gmh38y9d3l8nbnsm1mskcv10g3i83j0kac0a2qmypv1k9f",
+        "type": "tarball",
+        "url": "https://github.com/solarized/Xresources/archive/025ceddbddf55f2eb4ab40b05889148aab9699fc.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "st-solarized-both": {
+        "sha256": "0qsjj1xsp7s9gig44w90lbq8q725sbmlq197qv09j947cbf49j0d",
+        "type": "file",
+        "url": "https://st.suckless.org/patches/solarized/st-solarized-both-0.8.4.diff",
+        "url_template": "https://st.suckless.org/patches/solarized/st-solarized-both-<version>.diff",
+        "version": "0.8.4"
     },
     "vim-svelte": {
         "branch": "main",
@@ -58,18 +77,5 @@
         "type": "tarball",
         "url": "https://github.com/evanleck/vim-svelte/archive/f63fa77d621b25092081cce815effd7fbc169113.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
-    "xresources-theme": {
-        "branch": "master",
-        "description": "A big (huge) collection of rxvt / xterm terminal themes",
-        "homepage": null,
-        "owner": "logico-dev",
-        "path": "light/PaperColor.Xresources",
-        "repo": "Xresources-themes",
-        "rev": "1df25bf5b2e639e8695e8f2eb39e9d373af3b888",
-        "sha256": "0ifaa3gj9rlxpazvpy5bbi62l4chjhkvfs2kij3dhwkiqfqflprc",
-        "type": "file",
-        "url": "https://raw.githubusercontent.com/logico-dev/Xresources-themes/1df25bf5b2e639e8695e8f2eb39e9d373af3b888/light/PaperColor.Xresources",
-        "url_template": "https://raw.githubusercontent.com/<owner>/<repo>/<rev>/<path>"
     }
 }

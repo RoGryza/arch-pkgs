@@ -56,12 +56,12 @@ let
         }'';
     }
     {
-      plugin = pkgs.vimPlugins.papercolor-theme;
+      plugin = pkgs.vimPlugins.vim-colors-solarized;
       config = ''
-      set background=light
+      set background=dark
       augroup theme
         au!
-        autocmd VimEnter * colorscheme PaperColor
+        autocmd VimEnter * colorscheme solarized
       augroup END
       '';
     }

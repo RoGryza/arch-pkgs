@@ -114,6 +114,6 @@ in {
     xresources.properties = {
       "*.font" = "DejaVu Sans Mono:pixelsize=18";
     };
-    xresources.extraConfig = builtins.readFile (sources.xresources-theme);
+    xresources.extraConfig = builtins.readFile "${(sources.solarized-xresources)}/Xresources.dark";
   };
 }
