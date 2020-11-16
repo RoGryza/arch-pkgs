@@ -30,12 +30,13 @@
       javascript = [ "prettier" "eslint" ];
       typescript = [ "prettier" "eslint" ];
       svelte = [ "prettier" "eslint" ];
+      rust = [ "rustfmt" ];
     };
 
     # TODO manage jdtls installation
     lsc.serverCommands.java = "jdtls";
     # TODO manage rust and cargo components installation
-    lsc.serverCommands.rust = "rust-analyzer";
+    lsc.serverCommands.rust = "rls";
 
     lsc.serverCommands.ts = "${pkgs.nodePackages.typescript-language-server} --stdio";
   };
