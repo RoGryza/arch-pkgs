@@ -24,6 +24,27 @@
         let g:svelte_preprocessors = ['ts']
         '';
       }
+      {
+        # TODO overlays...
+        plugin = pkgs.vimUtils.buildVimPlugin {
+          pname = "vim-hcl";
+          src = (import ../../nix/sources.nix).vim-hcl;
+          version = "0";
+        };
+      }
+      {
+        # TODO overlays...
+        plugin = pkgs.vimUtils.buildVimPlugin {
+          pname = "vim-terraform";
+          src = (import ../../nix/sources.nix).vim-terraform;
+          version = "0";
+          postPatch = "rm Makefile";
+        };
+        config = ''
+        let g:terraform_align=1
+        let g:terraform_fmt_on_save=1
+        '';
+      }
     ];
 
     ale.fixers = {

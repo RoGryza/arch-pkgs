@@ -66,6 +66,18 @@
         "url_template": "https://st.suckless.org/patches/solarized/st-solarized-both-<version>.diff",
         "version": "0.8.4"
     },
+    "vim-hcl": {
+        "branch": "master",
+        "description": "Vim syntax for HCL",
+        "homepage": "",
+        "owner": "b4b4r07",
+        "repo": "vim-hcl",
+        "rev": "05bffef8382cd2a293b9c2afd1d9da304169e459",
+        "sha256": "1sgbyi38ymxfijzrzn325302yj0p0yszrhkfq10k225sig6cgavf",
+        "type": "tarball",
+        "url": "https://github.com/b4b4r07/vim-hcl/archive/05bffef8382cd2a293b9c2afd1d9da304169e459.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "vim-svelte": {
         "branch": "main",
         "description": "Vim syntax highlighting and indentation for Svelte 3 components.",
@@ -76,6 +88,18 @@
         "sha256": "0j7j6ibrylv32y0vw002yayfg7xia59nm2952bhbwlkl6m2cwnz9",
         "type": "tarball",
         "url": "https://github.com/evanleck/vim-svelte/archive/f63fa77d621b25092081cce815effd7fbc169113.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "vim-terraform": {
+        "branch": "master",
+        "description": "basic vim/terraform integration",
+        "homepage": "http://hashivim.github.io/vim-terraform",
+        "owner": "hashivim",
+        "repo": "vim-terraform",
+        "rev": "a6be9fea8757f6672397cadfb2784230914130c6",
+        "sha256": "1c8k170hly5y82f9a1ddqm70afab2hb6hcj45s5db1nkh486p0a0",
+        "type": "tarball",
+        "url": "https://github.com/hashivim/vim-terraform/archive/a6be9fea8757f6672397cadfb2784230914130c6.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
