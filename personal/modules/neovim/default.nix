@@ -44,6 +44,8 @@ let
         let g:lsc_auto_map = {
         \  'defaults': v:true,
         \  'PreviousReference': ${"''"},
+        \  'GoToDefiniton': 'gd',
+        \  'GoToDefinitonSplit': '<C-W>gd',
         \}
         let g:lsc_server_commands = ${toVim
           (attrsets.mapAttrs

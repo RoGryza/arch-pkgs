@@ -57,7 +57,7 @@
     # TODO manage jdtls installation
     lsc.serverCommands.java = "jdtls";
     # TODO manage rust and cargo components installation
-    lsc.serverCommands.rust = "rls";
+    lsc.serverCommands.rust = "${pkgs.rust-analyzer}/bin/rust-analyzer";
 
     lsc.serverCommands.ts = "${pkgs.nodePackages.typescript-language-server} --stdio";
   };
