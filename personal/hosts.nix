@@ -34,7 +34,6 @@
     programs.git.userName = "Rodrigo Gryzinski";
     programs.git.userEmail = "rogryza@gmail.com";
 
-    programs.scrot.enable = true;
     programs.passff-host.enable = true;
     programs.tridactyl.enable = true;
   };
