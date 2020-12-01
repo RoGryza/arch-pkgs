@@ -23,6 +23,18 @@
         "url": "https://github.com/nix-community/home-manager/archive/4cc1b77c3fc4f4b3bc61921dda72663eea962fa3.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "neovim-colors-solarized-truecolor-only": {
+        "branch": "master",
+        "description": "precision colorscheme for the vim text editor",
+        "homepage": "http://ethanschoonover.com/solarized",
+        "owner": "frankier",
+        "repo": "neovim-colors-solarized-truecolor-only",
+        "rev": "7474ba07580628cbf1ab2d0dc1a94a754bd4a447",
+        "sha256": "1rqa6rfmvrvf1lxhygkmv1g009cq50b21frmvlkkj6y57qapkc4c",
+        "type": "tarball",
+        "url": "https://github.com/frankier/neovim-colors-solarized-truecolor-only/archive/7474ba07580628cbf1ab2d0dc1a94a754bd4a447.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "niv": {
         "branch": "master",
         "description": "Easy dependency management for Nix projects",

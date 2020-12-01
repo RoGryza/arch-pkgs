@@ -13,7 +13,7 @@
 
     home.keyboard.layout = "us,us";
     home.keyboard.variant = ",intl";
-    home.keyboard.options = "grp:caps_toggle";
+    home.keyboard.options = [ "grp:caps_toggle" ];
 
     home.packages = with pkgs; [ rustup slack ];
     xsession.programs.browser = [ "/usr/bin/google-chrome-stable" ];

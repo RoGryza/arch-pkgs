@@ -5,6 +5,7 @@
       vim-javascript
       vim-jsonnet
       vim-nix
+      vim-toml
       {
         plugin = yats-vim;
         config = "set re=0";

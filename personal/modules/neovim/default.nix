@@ -58,8 +58,14 @@ let
         }'';
     }
     {
-      plugin = pkgs.vimPlugins.vim-colors-solarized;
+      # TODO figure out why overlays aren't working
+      plugin = pkgs.vimUtils.buildVimPlugin {
+        pname = "deoplete-vim-lsc";
+        src = (import ../../nix/sources.nix).neovim-colors-solarized-truecolor-only;
+        version = "0";
+      };
       config = ''
+      set termguicolors
       set background=dark
       augroup theme
         au!
@@ -120,6 +126,11 @@ in
   imports = [ ./languages.nix ];
 
   config = {
+    home.packages = [
+      (pkgs.neovim-qt.override {
+        neovim = cfg.finalPackage;
+      })
+    ];
     programs.neovim = {
       enable = true;
       viAlias = true;
