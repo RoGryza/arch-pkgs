@@ -58,6 +58,20 @@ in {
       enable = true;
       order = [ "battery" "network" "time" ];
       package = import sources.dwm-status {};
+      extraConfig = {
+        separator = "    ";
+        battery = {
+          charging = "▲";
+          discharging = "▼";
+          no_battery = "";
+          icons = ["" "" "" "" "" "" "" "" "" "" ""];
+        };
+        network = {
+          no_value = "";
+          template = "直  {ESSID}";
+        };
+        time.format = "   %H:%M %d/%m/%Yb";
+      };
     };
     xsession.importedVariables = [
       "LOCALE_ARCHIVE"
