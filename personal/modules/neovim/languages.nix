@@ -61,5 +61,7 @@
     lsc.serverCommands.rust = "${pkgs.rust-analyzer}/bin/rust-analyzer";
 
     lsc.serverCommands.ts = "${pkgs.nodePackages.typescript-language-server} --stdio";
+
+    # lsc.serverCommands.nix = "${pkgs.rnix-lsp}/bin/rnix-lsp";
   };
 }

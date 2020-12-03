@@ -5,6 +5,7 @@ let
   sources = import ../../nix/sources.nix;
   my-st = pkgs.callPackage ../../derivations/st {};
   my-dwm = (pkgs.callPackage ../../derivations/dwm {
+    fonts = [ "Ubuntu Mono Nerd Font:size=9" ];
     cmds =
       let
         cmdLine = xs: strings.concatStringsSep " " (map strings.escapeShellArg xs);
@@ -43,42 +44,27 @@ in {
     };
   };
 
-  config = let
-    dwm-status = pkgs.writeScript "dwm-status" ''
-      #!/bin/sh
-      while true; do
-        xsetroot -name "BAT $(cat /sys/class/power_supply/BAT0/capacity)% | $(date '+%a %d/%m %R')"
-        sleep 1m
-      done
-    '';
-  in {
+  config = {
     home.packages = with pkgs; [
+      nerdfonts
       my-dwm
       my-st
     ];
 
     xsession.enable = true;
     xsession.windowManager.command = "${my-dwm}/bin/dwm";
+    fonts.fontconfig.enable = true;
+    services.dwm-status = {
+      enable = true;
+      order = [ "battery" "network" "time" ];
+      package = import sources.dwm-status {};
+    };
     xsession.importedVariables = [
       "LOCALE_ARCHIVE"
       "LOCALE_ARCHIVE_2_32"
     ];
     xsession.initExtra = "xsetroot -solid rgb:00/00/00";
     xsession.profileExtra = config.programs.zsh.profileExtra;
-    systemd.user.services.dwm-status = {
-      Unit = {
-        Description = "Update dwm status bar";
-        After = [ "graphical-session-pre.target" ];
-        PartOf = [ "hm-graphical-session.target" ];
-      };
-
-      Install = { WantedBy = [ "hm-graphical-session.target" ]; };
-
-      Service = {
-        Type = "simple";
-        ExecStart = "${dwm-status.out}";
-      };
-    };
     home.file.".xinitrc" = {
       executable = true;
       text = ''
@@ -93,8 +79,6 @@ in {
         done
         unset f
       fi
-
-      ${dwm-status.out}&
 
       ${pkgs.autocutsel}/bin/autocutsel -fork &
       ${pkgs.autocutsel}/bin/autocutsel -selection PRIMARY -fork &

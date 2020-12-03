@@ -1,4 +1,7 @@
-{ pkgs, lib, cmds, ... }:
+{ pkgs, lib, cmds,
+  fonts ? [],
+  ...
+}:
 pkgs.dwm.overrideAttrs (old: {
   patches = map builtins.fetchurl [
     {
@@ -16,11 +19,16 @@ pkgs.dwm.overrideAttrs (old: {
   ];
 
   postPatch = let
+    carr = xs: lib.concatMapStringsSep ", "
+        # TODO escape C strings
+        (x: ''"${x}"'') xs;
     ccmds = with lib; mapAttrs
-      (_: cmd: concatMapStringsSep ", " (s: ''"${s}"'') (splitString " " cmd))
+      (_: cmd: carr (splitString " " cmd))
       cmds;
+    allFonts = fonts ++ [ "monospace:size=10" ];
   in ''
     substitute ${./config.h} config.h \
+      --subst-var-by fonts '${carr allFonts}' \
       --subst-var-by runcmd '${ccmds.run}' \
       --subst-var-by termcmd '${ccmds.term}' \
       --subst-var-by tmuxcmd '${ccmds.tmux}' \

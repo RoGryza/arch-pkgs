@@ -30,6 +30,7 @@ in
     github-cli
     jq
     lsd
+    manix
     mplayer
     mupdf
     newsboat

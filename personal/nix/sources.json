@@ -11,16 +11,28 @@
         "url": "https://github.com/hrsh7th/deoplete-vim-lsc/archive/b965e00435712d3249f09f986a0d0e6470f7ca4e.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "dwm-status": {
+        "branch": "master",
+        "description": "Highly performant and configurable DWM status service",
+        "homepage": "",
+        "owner": "Gerschtli",
+        "repo": "dwm-status",
+        "rev": "bf7df786754bfb940fb0364271293163a1ae5958",
+        "sha256": "19aggk9fjzsivs8wnvfqvrmhifqya4jq8ismqxm0syg0w135b04c",
+        "type": "tarball",
+        "url": "https://github.com/Gerschtli/dwm-status/archive/bf7df786754bfb940fb0364271293163a1ae5958.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "home-manager": {
         "branch": "master",
         "description": "Manage a user environment using Nix  [maintainer=@rycee] ",
         "homepage": "https://rycee.gitlab.io/home-manager/",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "4cc1b77c3fc4f4b3bc61921dda72663eea962fa3",
-        "sha256": "02y6bjakcbfc0wvf9b5qky792y9abyf1kgnk8r30f1advn3x69nc",
+        "rev": "06543644266edcf845ac912002868246b58d19e6",
+        "sha256": "199cw1z1n12bnb9x6db83lmxkzni6xl9hnxkrdjcqm73c95fswv3",
         "type": "tarball",
-        "url": "https://github.com/nix-community/home-manager/archive/4cc1b77c3fc4f4b3bc61921dda72663eea962fa3.tar.gz",
+        "url": "https://github.com/nix-community/home-manager/archive/06543644266edcf845ac912002868246b58d19e6.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "neovim-colors-solarized-truecolor-only": {
@@ -53,10 +65,10 @@
         "homepage": "",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "5d820315cd08bef23e276deebdc9f6ee32704dbf",
-        "sha256": "0zn508hlvpp7f96j9c73rmfy6kifaslgn02hdr1jmpkbmg5s2ynb",
+        "rev": "df25e214c8e662d693ef89e45ce56bbf58d6c59e",
+        "sha256": "117ir2ysw310q87mndv6czph5qjbhvggmhawcvak6x507yf0dxin",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/5d820315cd08bef23e276deebdc9f6ee32704dbf.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/df25e214c8e662d693ef89e45ce56bbf58d6c59e.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "solarized-xresources": {
