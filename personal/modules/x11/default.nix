@@ -3,9 +3,10 @@ with lib;
 let
   inherit (config.xsession) programs;
   sources = import ../../nix/sources.nix;
-  my-st = pkgs.callPackage ../../derivations/st {};
+  # TODO expose config option to pick nixGL wrapper
+  nixGLNvidia = (import sources.nixGL { inherit pkgs; }).nixGLNvidia;
   my-dwm = (pkgs.callPackage ../../derivations/dwm {
-    fonts = [ "Ubuntu Mono Nerd Font:size=9" ];
+    fonts = [ "Ubuntu Mono Nerd Font:size=14" ];
     cmds =
       let
         cmdLine = xs: strings.concatStringsSep " " (map strings.escapeShellArg xs);
@@ -35,8 +36,7 @@ in {
     xsession.programs = {
       launcher = mkProgramOption { };
       term = mkProgramOption {
-        # TODO figure out why my-st.out doesn't work
-        default = [ "st" ];
+        default = [ "${nixGLNvidia}/bin/nixGLNvidia" "${pkgs.alacritty}/bin/alacritty" ];
       };
       browser = mkProgramOption { default = [ "/usr/bin/firefox" ]; };
       lock = mkProgramOption { default = [ "slock" ]; };
@@ -46,10 +46,28 @@ in {
 
   config = {
     home.packages = with pkgs; [
+      nixGLNvidia
       nerdfonts
       my-dwm
-      my-st
     ];
+
+    programs.alacritty = {
+      enable = true;
+      package =
+        let
+          wrapper = ''
+            #!${pkgs.runtimeShell}
+            ${nixGLNvidia}/bin/nixGLNvidia ${pkgs.alacritty}/bin/alacritty "$@"
+          '';
+        in pkgs.runCommandLocal "alacritty" {} ''
+          mkdir -p $out/bin
+          echo ${strings.escapeShellArg wrapper} > $out/bin/alacritty
+          chmod +x $out/bin/alacritty
+          ln -sf ${pkgs.alacritty}/share $out/share
+        '';
+      settings = {
+      };
+    };
 
     xsession.enable = true;
     xsession.windowManager.command = "${my-dwm}/bin/dwm";
@@ -70,7 +88,7 @@ in {
           no_value = "";
           template = "直  {ESSID}";
         };
-        time.format = "   %H:%M %d/%m/%Yb";
+        time.format = "   %H:%M %d/%m/%Y";
       };
     };
     xsession.importedVariables = [
