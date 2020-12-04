@@ -25,7 +25,10 @@ let
       };
   });
 in {
-  imports = [ ./screenshot.nix ];
+  imports = [
+    ./alacritty.nix
+    ./screenshot.nix
+  ];
 
   options =
     let
@@ -35,9 +38,7 @@ in {
     in {
     xsession.programs = {
       launcher = mkProgramOption { };
-      term = mkProgramOption {
-        default = [ "${nixGLNvidia}/bin/nixGLNvidia" "${pkgs.alacritty}/bin/alacritty" ];
-      };
+      term = mkProgramOption { default = [ "xterm" ]; };
       browser = mkProgramOption { default = [ "/usr/bin/firefox" ]; };
       lock = mkProgramOption { default = [ "slock" ]; };
       pass = mkProgramOption { default = [ "${pkgs.pass}/bin/passmenu" ]; };
@@ -46,28 +47,9 @@ in {
 
   config = {
     home.packages = with pkgs; [
-      nixGLNvidia
       nerdfonts
       my-dwm
     ];
-
-    programs.alacritty = {
-      enable = true;
-      package =
-        let
-          wrapper = ''
-            #!${pkgs.runtimeShell}
-            ${nixGLNvidia}/bin/nixGLNvidia ${pkgs.alacritty}/bin/alacritty "$@"
-          '';
-        in pkgs.runCommandLocal "alacritty" {} ''
-          mkdir -p $out/bin
-          echo ${strings.escapeShellArg wrapper} > $out/bin/alacritty
-          chmod +x $out/bin/alacritty
-          ln -sf ${pkgs.alacritty}/share $out/share
-        '';
-      settings = {
-      };
-    };
 
     xsession.enable = true;
     xsession.windowManager.command = "${my-dwm}/bin/dwm";
