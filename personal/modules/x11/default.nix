@@ -3,8 +3,6 @@ with lib;
 let
   inherit (config.xsession) programs;
   sources = import ../../nix/sources.nix;
-  # TODO expose config option to pick nixGL wrapper
-  nixGLNvidia = (import sources.nixGL { inherit pkgs; }).nixGLNvidia;
   my-dwm = (pkgs.callPackage ../../derivations/dwm {
     fonts = [ "Ubuntu Mono Nerd Font:size=14" ];
     cmds =
@@ -50,6 +48,66 @@ in {
       nerdfonts
       my-dwm
     ];
+
+    programs.alacritty = {
+      enable = true;
+      defaultSettings = {
+        window.dynamic_title = false;
+        key_bindings = [
+          {
+            key = "F6";
+            command.program = "toggle-theme";
+          }
+        ];
+      };
+      themes.light.colors = {
+        primary.background = "0xeeeeee";
+        primary.foreground = "0x878787";
+
+        cursor.text = "0xeeeeee";
+        cursor.cursor = "0x878787";
+
+        normal.black = "0xeeeeee";
+        normal.red = "0xaf0000";
+        normal.green = "0x008700";
+        normal.yellow = "0x5f8700";
+        normal.blue = "0x0087af";
+        normal.magenta = "0x878787";
+        normal.cyan = "0x005f87";
+        normal.white = "0x444444";
+
+        bright.black = "0xbcbcbc";
+        bright.red = "0xd70000";
+        bright.green = "0xd70087";
+        bright.yellow = "0x8700af";
+        bright.blue = "0xd75f00";
+        bright.magenta = "0xd75f00";
+        bright.cyan = "0x005faf";
+        bright.white = "0x005f87";
+      };
+      themes.dark.colors = {
+        primary.background = "#282a36";
+        primary.foreground = "#f8f8f2";
+
+        normal.black = "#000000";
+        normal.red = "#ff5555";
+        normal.green = "#50fa7b";
+        normal.yellow = "#f1fa8c";
+        normal.blue = "#caa9fa";
+        normal.magenta = "#ff79c6";
+        normal.cyan = "#8be9fd";
+        normal.white = "#bfbfbf";
+
+        bright.black = "#575b70";
+        bright.red = "#ff6e67";
+        bright.green = "#5af78e";
+        bright.yellow = "#f4f99d";
+        bright.blue = "#caa9fa";
+        bright.magenta = "#ff92d0";
+        bright.cyan = "#9aedfe";
+        bright.white = "#e6e6e6";
+      };
+    };
 
     xsession.enable = true;
     xsession.windowManager.command = "${my-dwm}/bin/dwm";
