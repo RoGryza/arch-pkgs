@@ -25,6 +25,7 @@ let
 in {
   imports = [
     ./alacritty.nix
+    ./notifications
     ./screenshot.nix
   ];
 

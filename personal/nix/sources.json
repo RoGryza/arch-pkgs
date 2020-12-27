@@ -137,5 +137,17 @@
         "type": "tarball",
         "url": "https://github.com/hashivim/vim-terraform/archive/a6be9fea8757f6672397cadfb2784230914130c6.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "wired-notify": {
+        "branch": "master",
+        "description": "Lightweight notification daemon with highly customizable layout blocks, written in Rust.",
+        "homepage": "",
+        "owner": "Toqozz",
+        "repo": "wired-notify",
+        "rev": "0cdbcc72a0133c6eb97ee1dae1895b031372ca44",
+        "sha256": "1nzghnkpf4679gicl6sl0fjc4vs7dr43vgkpf1ip013y158hxyxz",
+        "type": "tarball",
+        "url": "https://github.com/Toqozz/wired-notify/archive/0cdbcc72a0133c6eb97ee1dae1895b031372ca44.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
