@@ -81,7 +81,7 @@ in {
       default = "${setTheme}/bin/set-theme";
     };
   };
-  # bat, Xresources, dwm-status?, drop old color dependencies
+  # bat, Xresources, rofi, dunst, dwm-status?, drop old color dependencies
 
   # TODO refresh theme on configuration switch
   config = mkMerge [

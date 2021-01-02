@@ -8,6 +8,7 @@ in
   xdg.configFile."nixpkgs/config.nix".text = "{ allowUnfree = true; }";
 
   imports = [
+    ./modules/bat
     ./modules/direnv
     ./modules/firefox.nix
     ./modules/neovim
@@ -23,7 +24,6 @@ in
 
   home.packages = with pkgs; [
     baobab
-    bat
     buku
     fasd
     fd
