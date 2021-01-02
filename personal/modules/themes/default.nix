@@ -11,7 +11,7 @@ let
     (name: { hook, template }: pkgs.writeShellScript "${name}-base16-hook" ''
       set -euo pipefail
 
-      export THEME="${config.lib.base16.dir name template}/$1"
+      export THEME="${cfg.consumerBase16Dirs.${name}}/$1"
       if [ ! -f "$THEME" ]; then
         echo "Theme '$1' not found for '${name}'"
         exit 1
@@ -63,6 +63,10 @@ in {
 
       default = {};
     };
+    consumerBase16Dirs = mkOption {
+      type = with types; attrsOf package;
+      readOnly = true;
+    };
 
     configPath = mkOption {
       type = types.str;
@@ -77,11 +81,13 @@ in {
       default = "${setTheme}/bin/set-theme";
     };
   };
-  # bat, Xresources, vim, alacritty, dwm-status?
+  # bat, Xresources, vim, dwm-status?, drop old color dependencies
 
   config = mkMerge [
     (mkIf cfg.enable {
       home.packages = [ setTheme ];
+      me.themes.consumerBase16Dirs = flip mapAttrs cfg.consumers
+        (name: { template, ... }: config.lib.base16.dir name template);
     })
   ];
 }

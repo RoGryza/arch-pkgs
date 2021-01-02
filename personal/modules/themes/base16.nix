@@ -94,12 +94,12 @@ in
   };
 
   config = {
-    lib.base16.template = scheme: attrs@{name, src, ...}:
+    lib.base16.template = scheme: attrs@{name, src, slug, ...}:
       pkgs.stdenv.mkDerivation {
         inherit name;
         inherit src;
         data = pkgs.writeText "${name}-data" (
-          toJSON (schemeAttrs scheme)
+          toJSON ((schemeAttrs scheme) // { scheme-slug = slug; })
         );
         phases = [ "buildPhase" ];
         buildPhase = "${pkgs.mustache-go}/bin/mustache $data $src > $out";
@@ -115,6 +115,7 @@ in
               templates = flip mapAttrs cfg.schemes
                 (name: scheme: config.lib.base16.template scheme {
                   name = "${app}-base16-${name}";
+                  slug = name;
                   src = template;
                 });
               linkTemplates = concatStringsSep "\n"

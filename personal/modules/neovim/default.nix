@@ -58,22 +58,6 @@ let
         }'';
     }
     {
-      # TODO figure out why overlays aren't working
-      plugin = pkgs.vimUtils.buildVimPlugin {
-        pname = "deoplete-vim-lsc";
-        src = (import ../../nix/sources.nix).neovim-colors-solarized-truecolor-only;
-        version = "0";
-      };
-      config = ''
-      set termguicolors
-      set background=dark
-      augroup theme
-        au!
-        autocmd VimEnter * colorscheme solarized
-      augroup END
-      '';
-    }
-    {
       plugin = pkgs.vimPlugins.ctrlp;
       config = ''
       let g:ctrlp_open_new_file = 'r'
@@ -123,7 +107,7 @@ in
     };
   };
 
-  imports = [ ./languages.nix ];
+  imports = [ ./colors.nix ./languages.nix ];
 
   config = {
     home.packages = [
@@ -144,6 +128,16 @@ in
           pname = "deoplete-vim-lsc";
           src = (import ../../nix/sources.nix).deoplete-vim-lsc;
           version = "0";
+        })
+        (pkgs.stdenv.mkDerivation {
+          name = "neovim-base16-colors";
+          phases = [ "installPhase" ];
+          installPhase = ''
+            mkdir -p $out/share/vim-plugins/base16/colors
+            for F in ${config.me.themes.consumerBase16Dirs.neovim}/*; do
+              ln -s "$F" "$out/share/vim-plugins/base16/colors/base16-$(basename $F).vim"
+            done
+          '';
         })
         vim-commentary
         vim-eunuch
