@@ -67,8 +67,8 @@ let
     app = "alacritty";
     template = yamlFormat.generate "alacritty-base16-template"
       (cfg.defaultSettings // schemeYamlTemplate);
-    install = name: package: ''ln -s ${package} $out/${name}.yaml'';
     installPhase = ''mkdir -p $out'';
+    install = name: package: ''ln -s ${package} $out/${name}.yaml'';
   };
 in {
   options = {

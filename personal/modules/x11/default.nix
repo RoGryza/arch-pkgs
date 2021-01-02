@@ -27,6 +27,7 @@ in {
     ./alacritty.nix
     ./notifications
     ./screenshot.nix
+    ./xresources.nix
   ];
 
   options =
@@ -104,7 +105,8 @@ in {
       ${pkgs.autocutsel}/bin/autocutsel -selection PRIMARY -fork &
 
       xrandr --auto
-      xrdb -merge ~/.Xresources
+      # TODO use set-theme from a pkg
+      set-theme $(set-theme) # trigger xrdb merging
       ${config.xsession.initExtra}
 
       errorlog="$HOME/.xsession-errors"
@@ -114,10 +116,5 @@ in {
       fi
       '';
     };
-
-    xresources.properties = {
-      "*.font" = "DejaVu Sans Mono:pixelsize=18";
-    };
-    xresources.extraConfig = builtins.readFile "${(sources.solarized-xresources)}/Xresources.dark";
   };
 }
