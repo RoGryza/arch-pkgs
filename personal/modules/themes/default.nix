@@ -83,6 +83,7 @@ in {
   };
   # bat, Xresources, dwm-status?, drop old color dependencies
 
+  # TODO refresh theme on configuration switch
   config = mkMerge [
     (mkIf cfg.enable {
       home.packages = [ setTheme ];
