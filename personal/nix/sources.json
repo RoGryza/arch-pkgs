@@ -17,10 +17,10 @@
         "homepage": "",
         "owner": "Gerschtli",
         "repo": "dwm-status",
-        "rev": "bf7df786754bfb940fb0364271293163a1ae5958",
-        "sha256": "19aggk9fjzsivs8wnvfqvrmhifqya4jq8ismqxm0syg0w135b04c",
+        "rev": "26eadb8f61b83a3d2318cd8b0405858ecac981a6",
+        "sha256": "07ca092xij632nb6ddiqb1bfgl0x40pndqami5skskinzyzid0sb",
         "type": "tarball",
-        "url": "https://github.com/Gerschtli/dwm-status/archive/bf7df786754bfb940fb0364271293163a1ae5958.tar.gz",
+        "url": "https://github.com/Gerschtli/dwm-status/archive/26eadb8f61b83a3d2318cd8b0405858ecac981a6.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "home-manager": {
@@ -29,10 +29,10 @@
         "homepage": "https://rycee.gitlab.io/home-manager/",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "06543644266edcf845ac912002868246b58d19e6",
-        "sha256": "199cw1z1n12bnb9x6db83lmxkzni6xl9hnxkrdjcqm73c95fswv3",
+        "rev": "bcbf09a2021712a501681fa984f659fddad3c2e8",
+        "sha256": "0ih2rp30ldvf4klpiphc1civ5f18flc1a541lw81y23nhrgny55a",
         "type": "tarball",
-        "url": "https://github.com/nix-community/home-manager/archive/06543644266edcf845ac912002868246b58d19e6.tar.gz",
+        "url": "https://github.com/nix-community/home-manager/archive/bcbf09a2021712a501681fa984f659fddad3c2e8.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "neovim-colors-solarized-truecolor-only": {
@@ -77,10 +77,10 @@
         "homepage": "",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "df25e214c8e662d693ef89e45ce56bbf58d6c59e",
-        "sha256": "117ir2ysw310q87mndv6czph5qjbhvggmhawcvak6x507yf0dxin",
+        "rev": "929768261a3ede470eafb58d5b819e1a848aa8bf",
+        "sha256": "0zi54vbfi6i6i5hdd4v0l144y1c8rg6hq6818jjbbcnm182ygyfa",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/df25e214c8e662d693ef89e45ce56bbf58d6c59e.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/929768261a3ede470eafb58d5b819e1a848aa8bf.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "solarized-xresources": {
@@ -132,10 +132,10 @@
         "homepage": "http://hashivim.github.io/vim-terraform",
         "owner": "hashivim",
         "repo": "vim-terraform",
-        "rev": "a6be9fea8757f6672397cadfb2784230914130c6",
-        "sha256": "1c8k170hly5y82f9a1ddqm70afab2hb6hcj45s5db1nkh486p0a0",
+        "rev": "aa7877acb5dd81bed70c1188667b76cfde5b67bf",
+        "sha256": "0ibks0ykybiardppad9psjh2qmh29s9mbjf2d4jg8hbx59kvj32g",
         "type": "tarball",
-        "url": "https://github.com/hashivim/vim-terraform/archive/a6be9fea8757f6672397cadfb2784230914130c6.tar.gz",
+        "url": "https://github.com/hashivim/vim-terraform/archive/aa7877acb5dd81bed70c1188667b76cfde5b67bf.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "wired-notify": {
@@ -144,10 +144,10 @@
         "homepage": "",
         "owner": "Toqozz",
         "repo": "wired-notify",
-        "rev": "0cdbcc72a0133c6eb97ee1dae1895b031372ca44",
-        "sha256": "1nzghnkpf4679gicl6sl0fjc4vs7dr43vgkpf1ip013y158hxyxz",
+        "rev": "dae1e3243f5613aa58ca0c6ba1ab686316c7c294",
+        "sha256": "1h38lfw3h7qil8fpqpz6a96ivm70wi9hbf5z1cl41arabqygfxkb",
         "type": "tarball",
-        "url": "https://github.com/Toqozz/wired-notify/archive/0cdbcc72a0133c6eb97ee1dae1895b031372ca44.tar.gz",
+        "url": "https://github.com/Toqozz/wired-notify/archive/dae1e3243f5613aa58ca0c6ba1ab686316c7c294.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
