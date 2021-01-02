@@ -81,7 +81,7 @@ in {
       default = "${setTheme}/bin/set-theme";
     };
   };
-  # bat, Xresources, vim, dwm-status?, drop old color dependencies
+  # bat, Xresources, dwm-status?, drop old color dependencies
 
   config = mkMerge [
     (mkIf cfg.enable {

@@ -16,6 +16,7 @@ let
         ln -s "$F" "$out/share/vim-plugins/base16/colors/base16-$(basename $F).vim"
       done
     '';
+    preferLocalBuild = true;
   });
 in
 mkMerge [
@@ -23,18 +24,25 @@ mkMerge [
     programs.neovim.plugins = [{
       plugin = colorsPlugin;
       config = ''
-        if filereadable("${themesCfg.dataPath}/current-theme")
-          let my_theme = readfile("${themesCfg.dataPath}/current-theme")[0]
-        else
-          let my_theme = "${themesCfg.defaultScheme}"
-        endif
-        execute "colorscheme base16-" . my_theme
+        function! MyRefresh()
+          execute "colorscheme base16-" . system('set-theme')
+        endfunction
+
+        augroup MyRefreshGroup
+          au!
+          autocmd VimEnter * call MyRefresh()
+        augroup END
       '';
     }];
     me.themes.consumers.neovim = {
       template = pkgs.writeText "neovim-base16-template" (readFile ./colors.mustache);
-      # TODO live-reload color scheme
-      hook = "";
+      hook = ''
+        for SRV in $(${pkgs.neovim-remote}/bin/nvr --serverlist); do
+          ${pkgs.neovim-remote}/bin/nvr \
+            --servername "$SRV" --nostart \
+            --remote-send ":call MyRefresh()<CR>" || true
+        done
+      '';
     };
   })
 ]

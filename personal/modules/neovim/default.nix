@@ -129,16 +129,6 @@ in
           src = (import ../../nix/sources.nix).deoplete-vim-lsc;
           version = "0";
         })
-        (pkgs.stdenv.mkDerivation {
-          name = "neovim-base16-colors";
-          phases = [ "installPhase" ];
-          installPhase = ''
-            mkdir -p $out/share/vim-plugins/base16/colors
-            for F in ${config.me.themes.consumerBase16Dirs.neovim}/*; do
-              ln -s "$F" "$out/share/vim-plugins/base16/colors/base16-$(basename $F).vim"
-            done
-          '';
-        })
         vim-commentary
         vim-eunuch
         vim-fugitive
