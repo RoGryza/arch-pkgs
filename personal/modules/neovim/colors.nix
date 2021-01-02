@@ -6,18 +6,13 @@ let
 
   inherit (builtins) readFile;
 
-  colorsPlugin = pkgs.stdenv.mkDerivation (rec {
-    name = "neovim-base16-colors";
-    pname = name;
-    phases = [ "installPhase" ];
-    installPhase = ''
-      mkdir -p $out/share/vim-plugins/base16/colors
-      for F in ${themesCfg.consumerBase16Dirs.neovim}/*; do
-        ln -s "$F" "$out/share/vim-plugins/base16/colors/base16-$(basename $F).vim"
-      done
-    '';
-    preferLocalBuild = true;
-  });
+  colorsPlugin = config.lib.base16.templates {
+    app = "neovim";
+    template = pkgs.writeText "neovim-base16-template" (readFile ./colors.mustache);
+    install = name: package:
+      ''ln -s ${package} $out/share/vim-plugins/base16-colors/colors/base16-${name}.vim'';
+    installPhase = ''mkdir -p $out/share/vim-plugins/base16-colors/colors'';
+  } // { pname = "base16-colors"; };
 in
 mkMerge [
   (mkIf cfg.enable {
@@ -34,15 +29,12 @@ mkMerge [
         augroup END
       '';
     }];
-    me.themes.consumers.neovim = {
-      template = pkgs.writeText "neovim-base16-template" (readFile ./colors.mustache);
-      hook = ''
-        for SRV in $(${pkgs.neovim-remote}/bin/nvr --serverlist); do
-          ${pkgs.neovim-remote}/bin/nvr \
-            --servername "$SRV" --nostart \
-            --remote-send ":call MyRefresh()<CR>" || true
-        done
-      '';
-    };
+    me.themes.hooks.neovim = ''
+      for SRV in $(${pkgs.neovim-remote}/bin/nvr --serverlist); do
+        ${pkgs.neovim-remote}/bin/nvr \
+          --servername "$SRV" --nostart \
+          --remote-send ":call MyRefresh()<CR>" || true
+      done
+    '';
   })
 ]

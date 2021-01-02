@@ -106,25 +106,24 @@ in
         allowSubstitutes = false;
       };
 
-      lib.base16.dir = app: template:
+      lib.base16.templates = { app, template, install, installPhase ? "" }:
         pkgs.stdenv.mkDerivation {
           name = "${app}-base16";
           phases = [ "installPhase" ];
+          preferLocalBuild = true;
           installPhase =
             let
-              templates = flip mapAttrs cfg.schemes
-                (name: scheme: config.lib.base16.template scheme {
-                  name = "${app}-base16-${name}";
-                  slug = name;
-                  src = template;
-                });
-              linkTemplates = concatStringsSep "\n"
-                (flip mapAttrsToList cfg.schemes
-                  (name: scheme: ''ln -s "${templates.${name}}" $out/${name}''));
-            in
-            ''
-              mkdir -p $out
-              ${linkTemplates}
+              instantiate = name: scheme: config.lib.base16.template scheme {
+                name = "${app}-base16-${name}";
+                slug = name;
+                src = template;
+              };
+            in ''
+              ${installPhase}
+              ${concatStringsSep "\n"
+                (mapAttrsToList
+                  (name: scheme: install name (instantiate name scheme))
+                  cfg.schemes)}
             '';
         };
   };

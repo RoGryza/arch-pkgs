@@ -7,19 +7,9 @@ let
   inherit (attrsets) mapAttrsToList;
   inherit (strings) concatStringsSep escapeShellArg;
 
-  consumerScripts = mapAttrsToList
-    (name: { hook, template }: pkgs.writeShellScript "${name}-base16-hook" ''
-      set -euo pipefail
-
-      export THEME="${cfg.consumerBase16Dirs.${name}}/$1"
-      if [ ! -f "$THEME" ]; then
-        echo "Theme '$1' not found for '${name}'"
-        exit 1
-      fi
-
-      ${hook}
-    '')
-    cfg.consumers;
+  hookPkgs = mapAttrsToList
+    (name: hook: pkgs.writeShellScript "${name}-base16-hook" hook)
+    cfg.hooks;
   # TODO move setTheme to its own derivation
   setTheme = pkgs.writeShellScriptBin "set-theme" ''
     set -euo pipefail
@@ -45,7 +35,7 @@ let
     mkdir -p "${cfg.dataPath}"
     echo "$THEME" > "$CURRENT_THEME"
 
-    ${concatStringsSep "\n" (map (hookPkg: "${hookPkg} $THEME") consumerScripts)}
+    ${concatStringsSep "\n" (map (hook: "${hook} $THEME") hookPkgs)}
   '';
 in {
   imports = [ ./base16.nix ];
@@ -53,32 +43,14 @@ in {
   options.me.themes = {
     enable = mkEnableOption "enable";
 
-    consumers = mkOption {
-      type = with types; attrsOf (submodule {
-        options = {
-          hook = mkOption { type = str; };
-          template = mkOption { type = types.package; };
-        };
-      });
-
+    hooks = mkOption {
+      type = with types; attrsOf str;
       default = {};
     };
-    consumerBase16Dirs = mkOption {
-      type = with types; attrsOf package;
-      readOnly = true;
-    };
 
-    configPath = mkOption {
-      type = types.str;
-      default = "${config.xdg.configHome}/base16-themes";
-    };
     dataPath = mkOption {
       type = types.str;
       default = "${config.xdg.dataHome}/base16-themes";
-    };
-    setTheme = mkOption {
-      type = types.str;
-      default = "${setTheme}/bin/set-theme";
     };
   };
   # bat, Xresources, rofi, dunst, dwm-status?, drop old color dependencies
@@ -87,8 +59,6 @@ in {
   config = mkMerge [
     (mkIf cfg.enable {
       home.packages = [ setTheme ];
-      me.themes.consumerBase16Dirs = flip mapAttrs cfg.consumers
-        (name: { template, ... }: config.lib.base16.dir name template);
     })
   ];
 }

@@ -62,6 +62,14 @@ let
       ];
     };
   };
+
+  alacrittyConfigs = config.lib.base16.templates {
+    app = "alacritty";
+    template = yamlFormat.generate "alacritty-base16-template"
+      (cfg.defaultSettings // schemeYamlTemplate);
+    install = name: package: ''ln -s ${package} $out/${name}.yaml'';
+    installPhase = ''mkdir -p $out'';
+  };
 in {
   options = {
     programs.alacritty = {
@@ -83,16 +91,11 @@ in {
         package = my-alacritty;
       };
 
-      me.themes.consumers.alacritty = {
-        hook = ''
-          # Symlinks don't trigger reloads
-          cp "$THEME" "${settingsPath}"
-          chmod u+w,g+w "${settingsPath}"
-        '';
-
-        template = yamlFormat.generate "alacritty-base16-template"
-          (cfg.defaultSettings // schemeYamlTemplate);
-      };
+      me.themes.hooks.alacritty = ''
+        # Symlinks don't trigger reloads
+        cp "${alacrittyConfigs}/$1.yaml" "${settingsPath}"
+        chmod u+w,g+w "${settingsPath}"
+      '';
     })
   ];
 }
