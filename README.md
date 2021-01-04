@@ -5,7 +5,8 @@ trying to get something done, feel free to [open a discussion] or e-mail me.
 
 Some cool stuff (for some definition of cool):
 
-* Multi-host setup with [hosts.nix] and a script in [shell.nix] _needs some work_.
+* Multi-host setup with [`hosts.nix`](hosts.nix) and a script in [`shell.nix`](shell.nix)
+_needs some work_.
 * Nix-configured dwm.
 * Neovim configuration options for [lsc] and [ale].
 * Global theme management using [base16].
