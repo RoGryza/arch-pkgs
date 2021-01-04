@@ -9,13 +9,13 @@ let
   batThemes = config.lib.base16.templates {
     app = "bat";
     template = pkgs.writeText "tmTheme-base16-template" (readFile ./template.mustache);
-    install = name: package: ''ln -s ${package} $out/themes/${name}.tmTheme'';
+    install = name: package: ''ln -s ${package} $out/themes/base16-${name}.tmTheme'';
     installPhase = ''mkdir -p $out/themes'';
   };
 in {
   home.packages = [ pkgs.bat ];
   me.themes.hooks.bat = ''
-      echo "--theme=base16-$THEME" > ~/.config/bat/config
+      echo "--theme=base16-$1" > ~/.config/bat/config
   '';
   xdg.configFile."bat/themes".source = "${batThemes}/themes";
   home.activation.bat-cache-build = hm.dag.entryAfter ["writeBoundary"] ''
