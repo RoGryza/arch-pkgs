@@ -1,0 +1,19 @@
+BACKUP GPG KEY!!!!
+move to flakes
+make multi-host setup better
+better modules/derivations/configs separation -- and fix overlays with home-manager
+wrap nix-prefetch-url in vim
+nohang or some other oom daemon
+maybe declarative-ish gpg keys
+picom
+Monitor dependencies
+config Xresources font from dependencies and set rofi Xresources with rofi configs
+move to BTRFS
+replace newsboat
+replace buku?
+add cargo-sweep and decide what to do with rustup (https://medium.com/horrible-hacks/using-systemd-as-a-better-cron-a4023eea996d)
+move to selfhosted repo
+https://github.com/nix-community/rnix-lsp instead of vim-nix
+lints - nix, README
+TESTS TESTS TESTS -- CI as well
+push to selfhosted nixos channel
