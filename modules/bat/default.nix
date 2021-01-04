@@ -18,6 +18,7 @@ in {
       echo "--theme=base16-$1" > ~/.config/bat/config
   '';
   xdg.configFile."bat/themes".source = "${batThemes}/themes";
+  # TODO check why the activation script isn't running
   home.activation.bat-cache-build = hm.dag.entryAfter ["writeBoundary"] ''
     $DRY_RUN_CMD ${pkgs.bat}/bin/bat cache --build
   '';

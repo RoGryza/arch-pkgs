@@ -17,19 +17,6 @@ let
     };
   in v: foldl' (acc: x: acc * 16 + hexes.${x}) 0 (stringToCharacters v);
 
-  mkColorComponentOption = component: mkOption {
-    type = types.strMatching "[0-9a-fA-F]{2}";
-    visible = false;
-    description = "The ${component} component value as a hexadecimal string.";
-  };
-
-  mkDecColorOption = component: mkOption {
-    type = types.ints.u8;
-    visible = false;
-    readOnly = true;
-    description = "The ${component} component value as a decimal number.";
-  };
-
   colorType = types.strMatching "[0-9a-fA-F]{6}";
   schemeAttrs = scheme:
     let
@@ -39,11 +26,11 @@ let
           value = rec {
             inherit hex;
             red = substring 0 2 hex;
-            green = substring 2 4 hex;
-            blue = substring 4 6 hex;
-            red-rgb = fromHex hex;
-            green-rgb = fromHex hex;
-            blue-rgb = fromHex hex;
+            green = substring 2 2 hex;
+            blue = substring 4 2 hex;
+            red-rgb = fromHex red;
+            green-rgb = fromHex green;
+            blue-rgb = fromHex blue;
           };
         });
       rest = foldl'
