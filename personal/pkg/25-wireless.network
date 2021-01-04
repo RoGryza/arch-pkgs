@@ -1,8 +1,0 @@
-[DHCP]
-RouteMetric=20
-
-[Match]
-Name=wl*
-
-[Network]
-DHCP=yes

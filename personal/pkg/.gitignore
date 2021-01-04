@@ -1,9 +1,0 @@
-.SRCINFO
-pkg/
-rogryza-*-x86_64.pkg.tar.zst
-rogryza-*.src.tar.gz
-src/
-rogryza.db
-rogryza.db.tar.gz
-rogryza.files
-rogryza.files.tar.gz
