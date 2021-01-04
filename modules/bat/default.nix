@@ -9,8 +9,8 @@ let
   batThemes = config.lib.base16.templates {
     app = "bat";
     template = pkgs.writeText "tmTheme-base16-template" (readFile ./template.mustache);
-    install = name: package: ''ln -s ${package} $out/themes/base16-${name}.tmTheme'';
     installPhase = ''mkdir -p $out/themes'';
+    install = name: package: ''ln -s ${package} $out/themes/base16-${name}.tmTheme'';
   };
 in {
   home.packages = [ pkgs.bat ];

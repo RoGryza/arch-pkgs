@@ -6,6 +6,7 @@ in
 {
   config = mkMerge [
     (mkIf cfg.enable {
+      # TODO add keyboard shortcuts and display actions
       services.dunst = {
         settings = {
           global.font = "Monospace 8";
