@@ -33,6 +33,9 @@
     programs.git.enable = true;
     programs.git.userName = "Rodrigo Gryzinski";
     programs.git.userEmail = "rogryza@gmail.com";
+    programs.git.extraConfig = {
+      pull.ff = "only";
+    };
 
     programs.passff-host.enable = true;
     programs.tridactyl.enable = true;
