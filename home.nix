@@ -34,6 +34,7 @@ in
     mplayer
     mupdf
     newsboat
+    nixFlakes
     pavucontrol
     ripgrep
     rtv

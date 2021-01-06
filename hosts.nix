@@ -34,7 +34,7 @@
     programs.git.userName = "Rodrigo Gryzinski";
     programs.git.userEmail = "rogryza@gmail.com";
     programs.git.extraConfig = {
-      pull.ff = "only";
+      pull.ff = false;
     };
 
     programs.passff-host.enable = true;
