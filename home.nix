@@ -11,6 +11,8 @@ in
     ./modules/bat
     ./modules/direnv
     ./modules/firefox.nix
+    ./modules/git
+    ./modules/kubernetes.nix
     ./modules/neovim
     ./modules/gpg.nix
     ./modules/pass.nix
@@ -27,7 +29,6 @@ in
     buku
     fasd
     fd
-    github-cli
     jq
     lsd
     manix
@@ -47,6 +48,8 @@ in
     extraXdgDataDirs = [ "/usr/share" "/usr/local/share/" ];
   };
   programs.rofi.enable = true;
+
+  programs.git.enable = true;
 
   me.themes = {
     enable = true;

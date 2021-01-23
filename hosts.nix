@@ -15,13 +15,20 @@
     home.keyboard.variant = ",intl";
     home.keyboard.options = [ "grp:caps_toggle" ];
 
-    home.packages = with pkgs; [ rustup slack ];
+    home.packages = with pkgs; [ kubectl rustup slack ];
     xsession.programs.browser = [ "/usr/bin/google-chrome-stable" ];
     programs.zsh.profileExtra = ''export PATH="$HOME/bin:$PATH"'';
     services.gpg-agent.sshKeys = [
       "6199884D574FA800EE6D72D4F151EBBC6B3B8192"
       "71014621DE5C3BFFE7C014193FE1FA377AE40438"
     ];
+    programs.git.userName = "Rodrigo Gryzinski";
+    programs.git.userEmail = "rodrigo.gryzinski@truelayer,com";
+    programs.git.extraConfig = {
+      user.signingKey = "rodrigo.gryzinski@truelayer.com";
+      credentials.helper = "store";
+    };
+    me.kubernetes.enable = true;
   };
   rogryza-tl-p = { lib, pkgs, ... }: {
     imports = [ ./home.nix ];
@@ -30,7 +37,6 @@
     home.keyboard.variant = ",intl";
     home.keyboard.options = [ "grp:caps_toggle" ];
 
-    programs.git.enable = true;
     programs.git.userName = "Rodrigo Gryzinski";
     programs.git.userEmail = "rogryza@gmail.com";
     programs.git.extraConfig = {

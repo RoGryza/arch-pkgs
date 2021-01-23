@@ -1,6 +1,8 @@
 { pkgs, ... }:
 {
   programs.neovim = {
+    extraConfig = builtins.readFile ./nix.vim;
+
     plugins = with pkgs.vimPlugins; [
       vim-javascript
       vim-jsonnet

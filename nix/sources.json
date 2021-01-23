@@ -17,10 +17,10 @@
         "homepage": "",
         "owner": "Gerschtli",
         "repo": "dwm-status",
-        "rev": "26eadb8f61b83a3d2318cd8b0405858ecac981a6",
-        "sha256": "07ca092xij632nb6ddiqb1bfgl0x40pndqami5skskinzyzid0sb",
+        "rev": "9bfa9023d58e33dc53db8753e5143dde5012b52f",
+        "sha256": "16yqqzhbkpj3l56adgkzhx618kbbp9jz2k23lsfs5jzdjwaiax54",
         "type": "tarball",
-        "url": "https://github.com/Gerschtli/dwm-status/archive/26eadb8f61b83a3d2318cd8b0405858ecac981a6.tar.gz",
+        "url": "https://github.com/Gerschtli/dwm-status/archive/9bfa9023d58e33dc53db8753e5143dde5012b52f.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "home-manager": {
@@ -29,10 +29,10 @@
         "homepage": "https://rycee.gitlab.io/home-manager/",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "e8358125d98fc0128a02b7664f532447750fb930",
-        "sha256": "0630l4c23d0v5fva3f4davs5qzmlid8b95x16gamxcysppvlh37w",
+        "rev": "8127799f79ee96129b295d78294f40a54078131f",
+        "sha256": "0iji8nxa66s409pvjwi370ycsw4m74w6b3ywnjpfkl2filpapjns",
         "type": "tarball",
-        "url": "https://github.com/nix-community/home-manager/archive/e8358125d98fc0128a02b7664f532447750fb930.tar.gz",
+        "url": "https://github.com/nix-community/home-manager/archive/8127799f79ee96129b295d78294f40a54078131f.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "neovim-colors-solarized-truecolor-only": {
@@ -53,10 +53,10 @@
         "homepage": "https://github.com/nmattia/niv",
         "owner": "nmattia",
         "repo": "niv",
-        "rev": "94dadba1a3a6a2f0b8ca2963e49daeec5d4e3098",
-        "sha256": "1y2h9wl7w60maa2m4xw9231xdr325xynzpph8xr4j5vsznygv986",
+        "rev": "3cd7914b2c4cff48927e11c216dadfab7d903fe5",
+        "sha256": "1agq4nvbhrylf2s77kb4xhh9k7xcwdwggq764k4jgsbs70py8cw3",
         "type": "tarball",
-        "url": "https://github.com/nmattia/niv/archive/94dadba1a3a6a2f0b8ca2963e49daeec5d4e3098.tar.gz",
+        "url": "https://github.com/nmattia/niv/archive/3cd7914b2c4cff48927e11c216dadfab7d903fe5.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixGL": {

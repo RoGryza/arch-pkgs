@@ -2,8 +2,6 @@ BACKUP GPG KEY!!!!
 move to flakes
 make multi-host setup better
 better modules/derivations/configs separation -- and fix overlays with home-manager
-wrap nix-prefetch-url in vim
-nohang or some other oom daemon
 maybe declarative-ish gpg keys
 picom
 Monitor dependencies
