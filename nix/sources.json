@@ -17,10 +17,10 @@
         "homepage": "",
         "owner": "Gerschtli",
         "repo": "dwm-status",
-        "rev": "9bfa9023d58e33dc53db8753e5143dde5012b52f",
-        "sha256": "16yqqzhbkpj3l56adgkzhx618kbbp9jz2k23lsfs5jzdjwaiax54",
+        "rev": "47e66503e673120f0aa8b179e888b937fac51c8e",
+        "sha256": "1rl25yszsg1a4pavj8xcsj1gmymwga0g9bpwf6cjq3cxhd40r3lp",
         "type": "tarball",
-        "url": "https://github.com/Gerschtli/dwm-status/archive/9bfa9023d58e33dc53db8753e5143dde5012b52f.tar.gz",
+        "url": "https://github.com/Gerschtli/dwm-status/archive/47e66503e673120f0aa8b179e888b937fac51c8e.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "home-manager": {
@@ -29,22 +29,10 @@
         "homepage": "https://rycee.gitlab.io/home-manager/",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "8127799f79ee96129b295d78294f40a54078131f",
-        "sha256": "0iji8nxa66s409pvjwi370ycsw4m74w6b3ywnjpfkl2filpapjns",
+        "rev": "1ee1d01daa19b3a6d16b5fb680c31a2bc110ce24",
+        "sha256": "0g45bwiq6dyq74am8kfnzx6ipyjiq967icyy71bcr3c4kfch34pm",
         "type": "tarball",
-        "url": "https://github.com/nix-community/home-manager/archive/8127799f79ee96129b295d78294f40a54078131f.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
-    "neovim-colors-solarized-truecolor-only": {
-        "branch": "master",
-        "description": "precision colorscheme for the vim text editor",
-        "homepage": "http://ethanschoonover.com/solarized",
-        "owner": "frankier",
-        "repo": "neovim-colors-solarized-truecolor-only",
-        "rev": "7474ba07580628cbf1ab2d0dc1a94a754bd4a447",
-        "sha256": "1rqa6rfmvrvf1lxhygkmv1g009cq50b21frmvlkkj6y57qapkc4c",
-        "type": "tarball",
-        "url": "https://github.com/frankier/neovim-colors-solarized-truecolor-only/archive/7474ba07580628cbf1ab2d0dc1a94a754bd4a447.tar.gz",
+        "url": "https://github.com/nix-community/home-manager/archive/1ee1d01daa19b3a6d16b5fb680c31a2bc110ce24.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {
@@ -53,10 +41,10 @@
         "homepage": "https://github.com/nmattia/niv",
         "owner": "nmattia",
         "repo": "niv",
-        "rev": "3cd7914b2c4cff48927e11c216dadfab7d903fe5",
-        "sha256": "1agq4nvbhrylf2s77kb4xhh9k7xcwdwggq764k4jgsbs70py8cw3",
+        "rev": "af958e8057f345ee1aca714c1247ef3ba1c15f5e",
+        "sha256": "1qjavxabbrsh73yck5dcq8jggvh3r2jkbr6b5nlz5d9yrqm9255n",
         "type": "tarball",
-        "url": "https://github.com/nmattia/niv/archive/3cd7914b2c4cff48927e11c216dadfab7d903fe5.tar.gz",
+        "url": "https://github.com/nmattia/niv/archive/af958e8057f345ee1aca714c1247ef3ba1c15f5e.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixGL": {
@@ -83,25 +71,6 @@
         "url": "https://github.com/NixOS/nixpkgs/archive/929768261a3ede470eafb58d5b819e1a848aa8bf.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "solarized-xresources": {
-        "branch": "master",
-        "description": "Solarized for X Windows",
-        "homepage": "http://ethanschoonover.com/solarized",
-        "owner": "solarized",
-        "repo": "Xresources",
-        "rev": "025ceddbddf55f2eb4ab40b05889148aab9699fc",
-        "sha256": "0lxv37gmh38y9d3l8nbnsm1mskcv10g3i83j0kac0a2qmypv1k9f",
-        "type": "tarball",
-        "url": "https://github.com/solarized/Xresources/archive/025ceddbddf55f2eb4ab40b05889148aab9699fc.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
-    "st-solarized-both": {
-        "sha256": "0qsjj1xsp7s9gig44w90lbq8q725sbmlq197qv09j947cbf49j0d",
-        "type": "file",
-        "url": "https://st.suckless.org/patches/solarized/st-solarized-both-0.8.4.diff",
-        "url_template": "https://st.suckless.org/patches/solarized/st-solarized-both-<version>.diff",
-        "version": "0.8.4"
-    },
     "vim-hcl": {
         "branch": "master",
         "description": "Vim syntax for HCL",
@@ -120,10 +89,10 @@
         "homepage": "",
         "owner": "evanleck",
         "repo": "vim-svelte",
-        "rev": "f63fa77d621b25092081cce815effd7fbc169113",
-        "sha256": "0j7j6ibrylv32y0vw002yayfg7xia59nm2952bhbwlkl6m2cwnz9",
+        "rev": "b8dcabef090d80a818b1953801d8dbcae90cf9a4",
+        "sha256": "17240lrrkj12jbjm2nqvhcf84mjr0li9vr03h478klmpxwl0icx4",
         "type": "tarball",
-        "url": "https://github.com/evanleck/vim-svelte/archive/f63fa77d621b25092081cce815effd7fbc169113.tar.gz",
+        "url": "https://github.com/evanleck/vim-svelte/archive/b8dcabef090d80a818b1953801d8dbcae90cf9a4.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "vim-terraform": {

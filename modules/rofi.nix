@@ -191,6 +191,9 @@ in {
   };
 
   config = {
+    # We manage the config file ourselves so move the default config file somewhere else
+    programs.rofi.configPath = "${config.xdg.configHome}/rofi/hm-config.rasi";
+
     xsession.programs.launcher = mkIf (cfg.enable)
       # TODO check why it's pulling the wrong font from Xresources
       [
